@@ -32,6 +32,10 @@ ext {
             targetSdkVersion    : 29,
     ]
 
+    jetBrainsDependencies = [
+            kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    ]
+
     classpathDependencies = [
             androidToolsBuild       : "com.android.tools.build:gradle:${gradle_version}",
             kotlinGradlePlugin      : "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",

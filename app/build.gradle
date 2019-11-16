@@ -25,6 +25,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation jetBrainsDependencies.values()
     implementation androidXDependencies.values()
     testImplementation testDependencies.values()
     androidTestImplementation androidTestDependencies.values()
