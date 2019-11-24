@@ -1,14 +1,11 @@
-apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion versionNumbers.compileSdkVersion
     buildToolsVersion versionNumbers.buildToolsVersion
     defaultConfig {
-        applicationId "com.architectcoders.equipocinco"
         minSdkVersion versionNumbers.minSdkVersion
         targetSdkVersion versionNumbers.targetSdkVersion
         versionCode 1
@@ -25,13 +22,13 @@ android {
 
 dependencies {
     //Modules
-    implementation project(':presentation')
     implementation project(':domain')
-    implementation project(':data')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation jetBrainsDependencies.values()
-    implementation androidXDependencies.values()
-    testImplementation testDependencies.values()
-    androidTestImplementation androidTestDependencies.values()
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 }
