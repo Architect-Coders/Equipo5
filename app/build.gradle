@@ -17,7 +17,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        resValue "string", "movie_db_api_key", properties.getProperty('movie_db_api_key')
+        resValue "string", "movie_db_api_key", movie_db_api_key
     }
     buildTypes {
         release {
