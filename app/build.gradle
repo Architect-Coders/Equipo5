@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.justpinch.androidanalyzer'
+
 android {
     Properties properties = new Properties()
     properties.load(project.file('../local.properties').newDataInputStream())
@@ -33,4 +35,14 @@ dependencies {
     implementation androidXDependencies.values()
     testImplementation testDependencies.values()
     androidTestImplementation androidTestDependencies.values()
+}
+
+androidAnalyzer {
+    applicationId = 'com.architectcoders.equipocinco'
+    projectName = 'AC Team5'
+    projectVersion = '1.0.0'
+    detekt = true
+    unitTestCoverage = true
+    packageName = 'com.architectcoders.equipocinco'
+    buildVariant = 'debug'
 }
