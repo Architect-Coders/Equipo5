@@ -10,4 +10,8 @@
         <item name="android:fontFamily">@font/copperplate_font_family</item>
     </style>
 
+    <style name="AppTheme.Splash">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
 </resources>
