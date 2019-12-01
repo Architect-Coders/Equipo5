@@ -1,23 +1,15 @@
-apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 android {
-    Properties properties = new Properties()
-    properties.load(project.file('../local.properties').newDataInputStream())
-
     compileSdkVersion versionNumbers.compileSdkVersion
     buildToolsVersion versionNumbers.buildToolsVersion
     defaultConfig {
-        applicationId "com.architectcoders.equipocinco"
         minSdkVersion versionNumbers.minSdkVersion
         targetSdkVersion versionNumbers.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        resValue "string", "movie_db_api_key", movie_db_api_key
     }
     buildTypes {
         release {
@@ -28,11 +20,6 @@ android {
 }
 
 dependencies {
-    //Modules
-    implementation project(':presentation')
-    implementation project(':domain')
-    implementation project(':data')
-
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation jetBrainsDependencies.values()
     implementation androidXDependencies.values()
