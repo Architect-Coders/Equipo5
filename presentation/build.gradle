@@ -1,6 +1,8 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion versionNumbers.compileSdkVersion
@@ -28,6 +30,8 @@ dependencies {
     implementation jetBrainsDependencies.values()
     implementation androidXDependencies.values()
     testImplementation testDependencies.values()
+    implementation androidDependenciesFramework.values()
+    kapt androidKaptLibs.values()
     androidTestImplementation androidTestDependencies.values()
 
 }

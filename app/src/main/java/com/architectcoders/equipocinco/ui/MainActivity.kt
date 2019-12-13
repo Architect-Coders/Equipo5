@@ -1,7 +1,8 @@
-package com.architectcoders.equipocinco
+package com.architectcoders.equipocinco.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.architectcoders.equipocinco.R
 
 class MainActivity : AppCompatActivity() {
 
