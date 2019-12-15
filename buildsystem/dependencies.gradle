@@ -29,35 +29,46 @@ ext {
     androidx_junit_version = "1.1.1"
     espresso_core_version = "3.2.0"
 
+    //Dagger
+    daggerVersion = '2.24'
+
+
     versionNumbers = [
-            compileSdkVersion   : 29,
-            buildToolsVersion   : "29.0.2",
-            minSdkVersion       : 19,
-            targetSdkVersion    : 29,
+            compileSdkVersion: 29,
+            buildToolsVersion: "29.0.2",
+            minSdkVersion    : 19,
+            targetSdkVersion : 29
     ]
 
     jetBrainsDependencies = [
-            kotlin                  : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+            kotlin: "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     ]
 
     classpathDependencies = [
-            androidToolsBuild       : "com.android.tools.build:gradle:${gradle_version}",
-            kotlinGradlePlugin      : "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
+            androidToolsBuild : "com.android.tools.build:gradle:${gradle_version}",
+            kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
     ]
 
     androidXDependencies = [
-            appCompat               : "androidx.appcompat:appcompat:${androidx_version}",
-            coreKtx                 : "androidx.core:core-ktx:${androidx_version}",
-            constraintlayout        : "androidx.constraintlayout:constraintlayout:${constraintlayout_version}",
+            appCompat       : "androidx.appcompat:appcompat:${androidx_version}",
+            coreKtx         : "androidx.core:core-ktx:${androidx_version}",
+            constraintlayout: "androidx.constraintlayout:constraintlayout:${constraintlayout_version}",
     ]
 
     testDependencies = [
-            jUnit                   : "junit:junit:${junit_version}",
+            jUnit: "junit:junit:${junit_version}",
     ]
 
     androidTestDependencies = [
-            androidXJUnit           : "androidx.test.ext:junit:${androidx_junit_version}",
-            espressoCore            : "androidx.test.espresso:espresso-core:${espresso_core_version}",
+            androidXJUnit: "androidx.test.ext:junit:${androidx_junit_version}",
+            espressoCore : "androidx.test.espresso:espresso-core:${espresso_core_version}",
     ]
 
+    androidDependenciesFramework = [
+            dagger: "com.google.dagger:dagger:${daggerVersion}",
+    ]
+
+    androidKaptLibs = [
+            daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}"
+    ]
 }

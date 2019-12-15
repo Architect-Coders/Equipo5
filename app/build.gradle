@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     Properties properties = new Properties()
     properties.load(project.file('../local.properties').newDataInputStream())
@@ -36,6 +38,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation jetBrainsDependencies.values()
     implementation androidXDependencies.values()
+    implementation androidDependenciesFramework.values()
+    kapt androidKaptLibs.values()
     testImplementation testDependencies.values()
     androidTestImplementation androidTestDependencies.values()
 }
