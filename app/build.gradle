@@ -35,9 +35,9 @@ android {
 }
 
 dependencies {
-    // Modules
-    implementation project(':presentation')
+    implementation project(':generic')
     implementation project(':domain')
+    implementation project(':presentation')
     implementation project(':data')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -51,5 +51,4 @@ dependencies {
     implementation loggingInterceptorDependencies.values()
     implementation coroutinesDependencies.values()
     implementation coroutinesAdapterDependencies.values()
-    implementation ankoDependencies.values()
 }

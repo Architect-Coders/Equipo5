@@ -38,8 +38,6 @@ ext {
     coroutinesVersion = '1.1.0'
     coroutinesAdapterVersion = '0.9.2'
 
-    ankoVersion = '0.10.8'
-
     versionNumbers = [
             compileSdkVersion: 29,
             buildToolsVersion: "29.0.2",
@@ -94,9 +92,5 @@ ext {
 
     coroutinesAdapterDependencies = [
             coroutines: "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:${coroutinesAdapterVersion}"
-    ]
-
-    ankoDependencies = [
-            anko: "org.jetbrains.anko:anko:${ankoVersion}"
     ]
 }

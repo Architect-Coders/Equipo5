@@ -4,6 +4,7 @@ import android.app.Application
 import com.architectcoders.equipocinco.di.ApplicationComponent
 import com.architectcoders.equipocinco.di.DaggerApplicationComponent
 import com.architectcoders.equipocinco.di.modules.ApplicationModule
+import com.architectcoders.generic.util.KLog
 
 /**
  * Created by Gabriel Pozo Guzman on 2019-12-13.
@@ -15,6 +16,7 @@ class MovieApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        KLog.launch(BuildConfig.DEBUG)
         applicationComponent = DaggerApplicationComponent.builder().applicationModule(
             ApplicationModule(this)
         ).build()
