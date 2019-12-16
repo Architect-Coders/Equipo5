@@ -24,7 +24,8 @@ android {
 
 dependencies {
     //Modules
-    implementation project(':domain')
+  //  implementation project(':domain')
+    implementation project(':data')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation jetBrainsDependencies.values()
@@ -33,5 +34,7 @@ dependencies {
     implementation androidDependenciesFramework.values()
     kapt androidKaptLibs.values()
     androidTestImplementation androidTestDependencies.values()
+    implementation coroutinesDependencies.values()
+
 
 }
