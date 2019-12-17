@@ -2,6 +2,7 @@ package com.architectcoders.equipocinco.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
 import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.zzz.ApiRepo
 import com.architectcoders.equipocinco.zzz.MainPresenter
@@ -35,4 +36,7 @@ class MainActivity
         toast(s)
         KLog.d(s)
     }
+
+    override fun onSupportNavigateUp() =
+        Navigation.findNavController(this, R.id.navHostFragment).navigateUp()
 }
