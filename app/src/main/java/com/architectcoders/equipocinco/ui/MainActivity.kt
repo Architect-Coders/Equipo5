@@ -6,7 +6,8 @@ import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.zzz.ApiRepo
 import com.architectcoders.equipocinco.zzz.MainPresenter
 import com.architectcoders.equipocinco.zzz.Movie
-import org.jetbrains.anko.toast
+import com.architectcoders.generic.util.KLog
+import com.architectcoders.generic.util.toast
 
 class MainActivity
     : AppCompatActivity()
@@ -30,6 +31,8 @@ class MainActivity
     }
 
     override fun updateData(movies: List<Movie>) {
-        toast(movies.toString())
+        val s = movies.toString()
+        toast(s)
+        KLog.d(s)
     }
 }

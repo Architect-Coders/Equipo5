@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    //Modules
+    implementation project(':generic')
     implementation project(':domain')
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
