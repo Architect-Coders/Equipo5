@@ -6,10 +6,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.architectcoders.data.Movie
 import com.architectcoders.equipocinco.R
+import com.architectcoders.generic.util.KLog
+import com.architectcoders.generic.util.toast
 import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
 import com.architectcoders.presentation.viewmodels.MovieViewModel
 import com.architectcoders.presentation.viewmodels.MovieViewModel.*
-import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
@@ -38,10 +39,11 @@ class MainActivity : BaseActivity() {
             is UiModel.RequestMovies -> viewModel.onRequestMovieList()
             is UiModel.Content -> updateData(model.movies)
         }
-
     }
 
     private fun updateData(movies: List<Movie>) {
-        toast(movies.toString())
+        val s = movies.toString()
+        toast(s)
+        KLog.d(s)
     }
 }
