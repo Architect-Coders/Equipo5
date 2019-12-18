@@ -6,10 +6,6 @@ import com.architectcoders.equipocinco.di.subcomponents.PresentationComponent
 import dagger.Component
 import javax.inject.Singleton
 
-/**
- * Created by Gabriel Pozo Guzman on 2019-12-13.
- */
-
 @Singleton
 @Component(modules = [ApplicationModule::class])
 interface ApplicationComponent {

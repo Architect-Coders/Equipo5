@@ -1,9 +1,5 @@
 package com.architectcoders.presentation
 
-/**
- * Created by Gabriel Pozo Guzman on 2019-12-16.
- */
-
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 

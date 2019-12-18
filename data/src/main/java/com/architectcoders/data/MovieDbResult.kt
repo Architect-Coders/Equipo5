@@ -4,10 +4,6 @@ import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
-/**
- * Created by Gabriel Pozo Guzman on 2019-12-16.
- */
-
 data class MovieDbResult(
     val page: Int,
     val results: List<Movie>,

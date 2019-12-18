@@ -8,10 +8,6 @@ import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
 
-/**
- * Created by Gabriel Pozo Guzman on 2019-12-13.
- */
-
 @Module
 class MoviesModule(private val context: Activity) {
 

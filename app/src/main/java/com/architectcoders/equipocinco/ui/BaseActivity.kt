@@ -6,11 +6,6 @@ import com.architectcoders.equipocinco.di.ApplicationComponent
 import com.architectcoders.equipocinco.di.modules.MoviesModule
 import com.architectcoders.equipocinco.di.subcomponents.PresentationComponent
 
-/**
- * Created by Gabriel Pozo Guzman on 2019-12-16.
- */
-
-
 abstract class BaseActivity : AppCompatActivity(){
     private var mIsInjectorUsed: Boolean = false
 

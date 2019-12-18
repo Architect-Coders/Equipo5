@@ -7,10 +7,6 @@ import com.architectcoders.data.Movie
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
-/**
- * Created by Gabriel Pozo Guzman on 2019-12-13.
- */
-
 class MovieViewModel(private val apiRepo: ApiRepo, uiDispatcher: CoroutineDispatcher) :
     BaseViewModel(uiDispatcher) {
 

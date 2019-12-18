@@ -11,10 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import javax.inject.Provider
 import kotlin.reflect.KClass
 
-/**
- * Created by Gabriel Pozo Guzman on 2019-12-13.
- */
-
 @Module
 class MoviesViewModelModule {
 

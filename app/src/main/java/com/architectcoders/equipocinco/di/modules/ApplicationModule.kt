@@ -10,10 +10,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-/**
- * Created by Gabriel Pozo Guzman on 2019-12-13.
- */
-
 @Module
 class ApplicationModule(private val context: Application) {
 
