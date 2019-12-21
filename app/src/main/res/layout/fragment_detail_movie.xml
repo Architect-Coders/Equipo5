@@ -17,7 +17,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/colorAccent" />
+            tools:background="@color/colorAccent"
+            tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/tvTitulo"
@@ -35,8 +36,8 @@
             android:id="@+id/tvDescripcion"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/margin_description_text"
             android:layout_marginTop="@dimen/margin_description_text"
+            android:layout_marginEnd="@dimen/margin_description_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/ivMoviePoster"
             app:layout_constraintStart_toStartOf="@+id/tvTitulo"
