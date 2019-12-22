@@ -49,4 +49,5 @@ dependencies {
     implementation loggingInterceptorDependencies.values()
     implementation coroutinesDependencies.values()
     implementation coroutinesAdapterDependencies.values()
+    implementation navigationDepdendencies.values()
 }
