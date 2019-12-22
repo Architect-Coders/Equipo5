@@ -2,16 +2,17 @@ package com.architectcoders.equipocinco.ui
 
 
 import android.os.Bundle
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.lifecycle.Observer
 import com.architectcoders.data.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.generic.util.KLog
 import com.architectcoders.generic.util.toast
 import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
 import com.architectcoders.presentation.viewmodels.MovieViewModel
-import com.architectcoders.presentation.viewmodels.MovieViewModel.*
 import javax.inject.Inject
+import com.architectcoders.presentation.viewmodels.MovieViewModel.*
 
 class MainActivity : BaseActivity() {
 
@@ -46,4 +47,7 @@ class MainActivity : BaseActivity() {
         toast(s)
         KLog.d(s)
     }
+
+    override fun onSupportNavigateUp() =
+        Navigation.findNavController(this, R.id.navHostFragment).navigateUp()
 }
