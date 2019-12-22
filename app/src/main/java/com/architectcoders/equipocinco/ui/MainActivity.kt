@@ -1,36 +1,47 @@
 package com.architectcoders.equipocinco.ui
 
+
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.architectcoders.data.Movie
 import com.architectcoders.equipocinco.R
-import com.architectcoders.equipocinco.zzz.ApiRepo
-import com.architectcoders.equipocinco.zzz.MainPresenter
-import com.architectcoders.equipocinco.zzz.Movie
 import com.architectcoders.generic.util.KLog
 import com.architectcoders.generic.util.toast
+import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
+import com.architectcoders.presentation.viewmodels.MovieViewModel
+import com.architectcoders.presentation.viewmodels.MovieViewModel.*
+import javax.inject.Inject
 
-class MainActivity
-    : AppCompatActivity()
-    , MainPresenter.View {
+class MainActivity : BaseActivity() {
 
-    private lateinit var activity: MainActivity
+    @Inject
+    lateinit var viewModelFactory: ViewModelProviderFactory
 
-    private val presenter by lazy { MainPresenter(ApiRepo(this)) }
+    private val viewModel by lazy {
+        ViewModelProvider(
+            this,
+            viewModelFactory
+        ).get(MovieViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_main)
-        activity = this@MainActivity
-        presenter.onCreate(activity)
+        getPresentationComponent().inject(this)
+
+        viewModel.model.observe(this, Observer(::updateUI))
     }
 
-    override fun onDestroy() {
-        presenter.onDestroy()
-        super.onDestroy()
+    private fun updateUI(model: UiModel) {
+        when (model) {
+            is UiModel.RequestMovies -> viewModel.onRequestMovieList()
+            is UiModel.Content -> updateData(model.movies)
+        }
     }
 
-    override fun updateData(movies: List<Movie>) {
+    private fun updateData(movies: List<Movie>) {
         val s = movies.toString()
         toast(s)
         KLog.d(s)

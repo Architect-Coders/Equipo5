@@ -1,17 +1,15 @@
 package com.architectcoders.presentation.di.modules
 
 import androidx.lifecycle.ViewModel
+import com.architectcoders.data.ApiRepo
 import com.architectcoders.presentation.viewmodels.MovieViewModel
 import dagger.MapKey
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoMap
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Provider
 import kotlin.reflect.KClass
-
-/**
- * Created by Gabriel Pozo Guzman on 2019-12-13.
- */
 
 @Module
 class MoviesViewModelModule {
@@ -34,7 +32,7 @@ class MoviesViewModelModule {
     @Provides
     @IntoMap
     @ViewModelKey(MovieViewModel::class)
-    fun movieViewModel(): ViewModel {
-        return MovieViewModel()
+    fun movieViewModel(apiRepo: ApiRepo): ViewModel {
+        return MovieViewModel(apiRepo, Dispatchers.Main)
     }
 }
