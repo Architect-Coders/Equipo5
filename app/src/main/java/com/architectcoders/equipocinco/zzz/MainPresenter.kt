@@ -17,6 +17,8 @@ class MainPresenter(private val repo: ApiRepo) : Scope by Scope.Impl() {
         launch {
             view.updateData(repo.getPopularMovies().results)
         }
+
+        // Test commit
     }
 
     fun onDestroy() {
