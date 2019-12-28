@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 android {
+
     compileSdkVersion versionNumbers.compileSdkVersion
     buildToolsVersion versionNumbers.buildToolsVersion
     defaultConfig {
@@ -10,12 +11,18 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "movie_db_api_key", MOVIE_DB_API_KEY
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -27,5 +34,9 @@ dependencies {
     implementation jetBrainsDependencies.values()
     implementation androidXDependencies.values()
     testImplementation testDependencies.values()
+    implementation retrofitDependencies.values()
+    implementation loggingInterceptorDependencies.values()
+    implementation coroutinesDependencies.values()
+    implementation coroutinesAdapterDependencies.values()
     androidTestImplementation androidTestDependencies.values()
 }
