@@ -1,5 +1,6 @@
 package com.architectcoders.equipocinco.zzz
 
+import com.architectcoders.data.MovieDbResult
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query

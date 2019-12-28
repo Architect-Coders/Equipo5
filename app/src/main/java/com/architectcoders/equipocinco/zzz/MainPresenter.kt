@@ -1,5 +1,6 @@
 package com.architectcoders.equipocinco.zzz
 
+import com.architectcoders.data.Movie
 import kotlinx.coroutines.launch
 
 class MainPresenter(private val repo: ApiRepo) : Scope by Scope.Impl() {
