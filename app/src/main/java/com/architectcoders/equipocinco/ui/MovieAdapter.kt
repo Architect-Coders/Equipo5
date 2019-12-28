@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import com.architectcoders.data.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.generic.framework.extension.view.inflate
+import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.generic.ui.view.adapter.BaseAdapter
 import kotlinx.android.synthetic.main.item_movie.view.*
 
@@ -19,8 +20,13 @@ class MovieAdapter(
 
     class Holder(itemView: View) : BaseAdapter.Holder<Movie>(itemView) {
         override fun View.bindItem(item: Movie) {
-//            initIv(item)
+            initIv(item)
             initTv(item)
+        }
+
+        private fun View.initIv(item: Movie) {
+            val url = "https://image.tmdb.org/t/p/w185/${item.posterPath}"
+            iv.loadUrl(url)
         }
 
         private fun View.initTv(item: Movie) {

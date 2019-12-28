@@ -42,6 +42,8 @@ ext {
     navigationFragmentVersion = "2.1.0"
     navigationUiVersion = "2.1.0"
 
+    glideVersion = "4.9.0"
+
     versionNumbers = [
             compileSdkVersion: 29,
             buildToolsVersion: "29.0.2",
@@ -101,6 +103,14 @@ ext {
 
     navigationDepdendencies = [
             navigationFragment: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentVersion}",
-            navigationUi      : "androidx.navigation:navigation-ui-ktx:${navigationUiVersion}"
+            navigationUi      : "androidx.navigation:navigation-ui-ktx:${navigationUiVersion}",
+    ]
+
+    glideDependencies = [
+            glide: "com.github.bumptech.glide:glide:${glideVersion}",
+    ]
+
+    glideCompilerDependencies = [
+            glide: "com.github.bumptech.glide:compiler:${glideVersion}"
     ]
 }
