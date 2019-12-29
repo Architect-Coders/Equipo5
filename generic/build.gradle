@@ -25,4 +25,6 @@ dependencies {
     implementation androidXDependencies.values()
     testImplementation testDependencies.values()
     androidTestImplementation androidTestDependencies.values()
+    implementation glideDependencies.values()
+    annotationProcessor glideCompilerDependencies.values()
 }
