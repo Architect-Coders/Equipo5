@@ -3,7 +3,6 @@ package com.architectcoders.equipocinco.di.modules
 import android.app.Activity
 import com.architectcoders.data.ApiRepo
 import com.architectcoders.data.ApiService
-import com.architectcoders.equipocinco.zzz.ApiClient
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
