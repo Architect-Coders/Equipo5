@@ -13,8 +13,16 @@ import javax.inject.Inject
 
 class DetailMovieFragment : Fragment() {
 
+    companion object {
+        private const val DEFAULT_MOVIE_ID_VALUE = 0
+
+        const val MOVIE_ID_KEY = "id"
+    }
+
     @Inject
     lateinit var viewModelFactory: ViewModelProviderFactory
+
+    private var movieId: Int = DEFAULT_MOVIE_ID_VALUE
 
     private val viewModel by lazy {
         ViewModelProvider(
@@ -28,8 +36,10 @@ class DetailMovieFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        arguments?.let { bundle ->
+            movieId = bundle.getInt(MOVIE_ID_KEY, DEFAULT_MOVIE_ID_VALUE)
+        }
         return inflater.inflate(R.layout.fragment_detail_movie, container, false)
     }
-
 
 }

@@ -8,6 +8,15 @@
         android:id="@+id/moviesFragment"
         android:name="com.architectcoders.equipocinco.ui.MoviesFragment"
         android:label="Movies Fragment">
+        <action
+            android:id="@+id/action_moviesFragment_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.architectcoders.equipocinco.ui.DetailMovieFragment"
+        android:label="Movies Fragment">
     </fragment>
 
 </navigation>

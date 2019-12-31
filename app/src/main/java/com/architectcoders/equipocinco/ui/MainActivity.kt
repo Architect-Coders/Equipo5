@@ -1,13 +1,16 @@
 package com.architectcoders.equipocinco.ui
 
 import android.os.Bundle
+import androidx.core.os.bundleOf
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.architectcoders.data.Movie
 import com.architectcoders.equipocinco.R
-import com.architectcoders.generic.util.toast
+import com.architectcoders.equipocinco.ui.DetailMovieFragment.Companion.MOVIE_ID_KEY
 import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
 import com.architectcoders.presentation.viewmodels.MovieViewModel
 import com.architectcoders.presentation.viewmodels.MovieViewModel.UiModel
@@ -27,6 +30,7 @@ class MainActivity : BaseActivity() {
     }
 
     private lateinit var activity: MainActivity
+    private lateinit var navController: NavController
     private var adapter: MovieAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,6 +38,7 @@ class MainActivity : BaseActivity() {
         setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_main)
         activity = this@MainActivity
+        navController = findNavController(R.id.navHostFragment)
         getPresentationComponent().inject(this)
 
         viewModel.model.observe(this, Observer(::updateUI))
@@ -53,12 +58,18 @@ class MainActivity : BaseActivity() {
     private fun initAdapter(items: List<Movie>) {
         rv?.let {
             rv.layoutManager = GridLayoutManager(activity, 3)
-            adapter = MovieAdapter(items.toMutableList()) {
-                toast("${it.originalTitle}")
+            adapter = MovieAdapter(items.toMutableList()) { movie ->
+                navigateToDetailMovie(movie.id)
             }
             rv.adapter = adapter
         }
     }
+
+    private fun navigateToDetailMovie(id: Int) =
+        navController.navigate(
+            R.id.action_moviesFragment_to_detailMovieFragment,
+            bundleOf(MOVIE_ID_KEY to id)
+        )
 
     override fun onSupportNavigateUp() =
         Navigation.findNavController(this, R.id.navHostFragment).navigateUp()
