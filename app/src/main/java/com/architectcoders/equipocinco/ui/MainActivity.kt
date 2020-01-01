@@ -19,8 +19,6 @@ class MainActivity : BaseActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProviderFactory
 
-
-
     private lateinit var activity: MainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,8 +28,6 @@ class MainActivity : BaseActivity() {
         activity = this@MainActivity
         getPresentationComponent().inject(this)
     }
-
-
 
     override fun onSupportNavigateUp() =
         Navigation.findNavController(this, R.id.navHostFragment).navigateUp()

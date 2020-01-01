@@ -12,8 +12,10 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.architectcoders.data.Movie
 
 import com.architectcoders.equipocinco.R
+import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.generic.util.toast
 import com.architectcoders.presentation.viewmodels.MovieViewModel
+import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_movies.*
 
 class DetailFragment : Fragment() {
@@ -29,6 +31,14 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val movie = arguments?.getParcelable<Movie>("movie")
-        context?.toast(movie?.title.toString())
+        movie?.let {
+            setMoviewInfo(it)
+        }
+    }
+
+    private fun setMoviewInfo(movie : Movie){
+        iv.loadUrl("https://image.tmdb.org/t/p/w185/${movie.posterPath}")
+        tvTitle.text = movie.title
+        tvDescription.text = movie.overview
     }
 }
