@@ -15,14 +15,11 @@ class DetailMovieViewModel(uiDispatcher: CoroutineDispatcher) :
             return _model
         }
 
-//    private var movieId: Int? = null
-
     sealed class UiModel {
         data class Loading(val movie: Movie) : UiModel()
     }
 
     fun onMovieDetailLoading(movie: Movie?) {
-//        this.movieId = movieId
         launch {
             _model.value = UiModel.Loading(movie!!)
         }
