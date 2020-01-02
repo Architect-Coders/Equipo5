@@ -19,11 +19,9 @@ import javax.inject.Inject
 class DetailMovieFragment : Fragment() {
 
     companion object {
-        const val MOVIE_ID_KEY = "id"
+        const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w185/"
+        const val MOVIE_ID_KEY = "DetailMovieFragment::id"
     }
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProviderFactory
 
     private val viewModel by lazy {
         ViewModelProvider(
@@ -52,7 +50,7 @@ class DetailMovieFragment : Fragment() {
     }
 
     private fun updateUI(movie: Movie) {
-        ivMoviePoster.loadUrl("https://image.tmdb.org/t/p/w185/${movie.posterPath}")
+        ivMoviePoster.loadUrl("$POSTER_BASE_URL${movie.posterPath}")
         tvTitulo.text = movie.title
         tvDescripcion.text = movie.overview
     }
