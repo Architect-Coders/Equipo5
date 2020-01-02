@@ -38,7 +38,7 @@ class MainActivity : BaseActivity() {
         setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_main)
         activity = this@MainActivity
-        navController = findNavController(R.id.navHostFragment)
+        navController = getNavController()
         getPresentationComponent().inject(this)
 
         viewModel.model.observe(this, Observer(::updateUI))
@@ -71,6 +71,9 @@ class MainActivity : BaseActivity() {
             bundleOf(MOVIE_ID_KEY to id)
         )
 
+    private fun getNavController() =
+        Navigation.findNavController(this, R.id.navHostFragment)
+
     override fun onSupportNavigateUp() =
-        Navigation.findNavController(this, R.id.navHostFragment).navigateUp()
+        navController.navigateUp()
 }
