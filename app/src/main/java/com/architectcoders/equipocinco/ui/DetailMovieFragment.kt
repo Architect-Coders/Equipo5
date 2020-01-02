@@ -5,16 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.architectcoders.data.Movie
 import com.architectcoders.equipocinco.R
+import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
+import com.architectcoders.presentation.viewmodels.DetailMovieViewModel.UiModel.Loading
+import kotlinx.android.synthetic.main.fragment_detail_movie.*
 import javax.inject.Inject
 
 class DetailMovieFragment : Fragment() {
 
     companion object {
-        private const val DEFAULT_MOVIE_ID_VALUE = 0
+        const val DEFAULT_MOVIE_ID_VALUE = 0
 
         const val MOVIE_ID_KEY = "id"
     }
@@ -39,7 +44,21 @@ class DetailMovieFragment : Fragment() {
         arguments?.let { bundle ->
             movieId = bundle.getInt(MOVIE_ID_KEY, DEFAULT_MOVIE_ID_VALUE)
         }
+        viewModel.onMovieDetailLoading(movieId)
+        viewModel.model.observe(this, Observer(::refresh))
         return inflater.inflate(R.layout.fragment_detail_movie, container, false)
+    }
+
+    private fun refresh(model: DetailMovieViewModel.UiModel) {
+        when (model) {
+            is Loading -> updateUI(model.movie)
+        }
+    }
+
+    private fun updateUI(movie: Movie) {
+        ivMoviePoster.loadUrl("https://image.tmdb.org/t/p/w185/${movie.posterPath}")
+        tvTitulo.text = movie.title
+        tvDescripcion.text = movie.overview
     }
 
 }

@@ -2,6 +2,7 @@ package com.architectcoders.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.architectcoders.data.Movie
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
@@ -14,13 +15,16 @@ class DetailMovieViewModel(uiDispatcher: CoroutineDispatcher) :
             return _model
         }
 
+    private var movieId: Int? = null
+
     sealed class UiModel {
-        object Loading : UiModel()
+        data class Loading(val movie: Movie) : UiModel()
     }
 
-    fun onRequestDetailMovie() {
+    fun onMovieDetailLoading(movieId: Int) {
+        this.movieId = movieId
         launch {
-            _model.value = UiModel.Loading
+            _model.value = UiModel.Loading(Movie())
         }
     }
 }
