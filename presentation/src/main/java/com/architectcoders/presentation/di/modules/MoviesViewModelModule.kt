@@ -2,6 +2,7 @@ package com.architectcoders.presentation.di.modules
 
 import androidx.lifecycle.ViewModel
 import com.architectcoders.data.ApiRepo
+import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
 import com.architectcoders.presentation.viewmodels.MovieViewModel
 import dagger.MapKey
 import dagger.Module
@@ -34,5 +35,12 @@ class MoviesViewModelModule {
     @ViewModelKey(MovieViewModel::class)
     fun movieViewModel(apiRepo: ApiRepo): ViewModel {
         return MovieViewModel(apiRepo, Dispatchers.Main)
+    }
+
+    @Provides
+    @IntoMap
+    @ViewModelKey(DetailMovieViewModel::class)
+    fun detailMovieViewModel(): ViewModel {
+        return DetailMovieViewModel(Dispatchers.Main)
     }
 }

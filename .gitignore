@@ -2,13 +2,7 @@
 .gradle
 /local.properties
 
-.idea/
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
+/.idea
 
 .DS_Store
 /build
@@ -16,10 +10,6 @@
 .externalNativeBuild
 .cxx
 
-*.apk
-*.ap_
-*.dex
-*.class
 bin/
 gen/
 /keystore
