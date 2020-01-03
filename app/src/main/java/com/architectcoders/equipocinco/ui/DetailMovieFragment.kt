@@ -10,16 +10,14 @@ import androidx.lifecycle.ViewModelProvider
 import com.architectcoders.data.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.generic.framework.extension.view.loadUrl
-import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel.UiModel.Loading
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
-import javax.inject.Inject
 
 class DetailMovieFragment : Fragment() {
 
     companion object {
-        const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w185/"
+        const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/original/"
         const val MOVIE_ID_KEY = "DetailMovieFragment::id"
     }
 
@@ -51,8 +49,8 @@ class DetailMovieFragment : Fragment() {
 
     private fun updateUI(movie: Movie) {
         ivMoviePoster.loadUrl("$POSTER_BASE_URL${movie.posterPath}")
-        tvTitulo.text = movie.title
-        tvDescripcion.text = movie.overview
+        tvTitle.text = movie.title
+        tvDescription.text = movie.overview
     }
 
 }

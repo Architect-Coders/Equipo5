@@ -14,6 +14,7 @@
             android:id="@+id/ivMoviePoster"
             android:layout_width="0dp"
             android:layout_height="@dimen/height_image_detail_movie"
+            android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -21,7 +22,7 @@
             tools:ignore="ContentDescription" />
 
         <TextView
-            android:id="@+id/tvTitulo"
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -30,18 +31,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivMoviePoster"
             app:layout_constraintVertical_bias="0.05"
-            tools:text="Titulo de la pelicula" />
+            tools:text="Movie Title" />
 
         <TextView
-            android:id="@+id/tvDescripcion"
+            android:id="@+id/tvDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_description_text"
             android:layout_marginEnd="@dimen/margin_description_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/ivMoviePoster"
-            app:layout_constraintStart_toStartOf="@+id/tvTitulo"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
             tools:text="@string/loren_ipsum" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

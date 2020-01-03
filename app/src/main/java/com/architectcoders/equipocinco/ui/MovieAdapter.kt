@@ -21,16 +21,11 @@ class MovieAdapter(
     class Holder(itemView: View) : BaseAdapter.Holder<Movie>(itemView) {
         override fun View.bindItem(item: Movie) {
             initIv(item)
-            initTv(item)
         }
 
         private fun View.initIv(item: Movie) {
             val url = "https://image.tmdb.org/t/p/w185/${item.posterPath}"
             iv.loadUrl(url)
-        }
-
-        private fun View.initTv(item: Movie) {
-            tv.text = item.originalTitle
         }
     }
 }
