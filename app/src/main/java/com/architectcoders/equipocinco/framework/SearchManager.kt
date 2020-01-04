@@ -15,7 +15,7 @@ class SearchManager(
 ) {
 
     companion object {
-        const val CHARS_SEARCH_LENGTH = 1
+        const val CHARS_SEARCH_LENGTH = 3
     }
 
     interface Listener {

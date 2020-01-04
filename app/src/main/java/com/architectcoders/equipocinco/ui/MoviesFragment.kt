@@ -71,6 +71,7 @@ class MoviesFragment : Fragment() {
                 )
             }
             rv.adapter = adapter
+            pb.hide()
         }
     }
 
