@@ -7,4 +7,9 @@ class ApiRepo(private val apiService: ApiService) {
         apiService
             .getPopularMoviesAsync()
             .await()
+
+    suspend fun searchMoviesAsync(query: String) =
+        apiService
+            .searchMoviesAsync(query)
+            .await()
 }

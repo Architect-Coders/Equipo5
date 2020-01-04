@@ -4,26 +4,31 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.ProgressBar
 import com.architectcoders.generic.framework.extension.view.gone
 import com.architectcoders.generic.framework.extension.view.setOnTextChangedListener
 import com.architectcoders.generic.framework.extension.view.visible
 
-class SearchManager(private val et: EditText,
-                    val ib: ImageButton,
-                    private val pb: ProgressBar,
-                    listener: (String) -> Unit) {
+class SearchManager(
+    private val et: EditText,
+    private val ib: ImageButton,
+    private val listener: Listener
+) {
 
     companion object {
         const val CHARS_SEARCH_LENGTH = 1
+    }
+
+    interface Listener {
+        fun onTextChanged(query: String)
+        fun onShowProgressBar(show: Boolean)
     }
 
     private var searchHandler: Handler = Handler(Looper.getMainLooper())
 
     init {
         et.clearFocus()
-        et.setOnTextChangedListener { s ->
-            search(s.toString())
+        et.setOnTextChangedListener { query ->
+            search(query.toString())
         }
         ib.setOnClickListener {
             et.setText("")
@@ -39,17 +44,15 @@ class SearchManager(private val et: EditText,
             ib.visible()
         }
         if (sTrimmed.isEmpty() || sTrimmed.length < CHARS_SEARCH_LENGTH) {
-            showProgressBar(false)
+            listener.onShowProgressBar(false)
         } else if (sTrimmed.length >= CHARS_SEARCH_LENGTH) {
-            showProgressBar(true)
+            listener.onShowProgressBar(true)
         }
         searchHandler.postDelayed(searchRunnable, 500)
     }
 
     private var searchRunnable = Runnable {
-        val s = et.text.toString()
-        listener(s)
+        val query = et.text.toString()
+        listener.onTextChanged(query)
     }
-
-    fun showProgressBar(show: Boolean) = if (show) pb.visible() else pb.gone()
 }
