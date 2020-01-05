@@ -1,4 +1,4 @@
-package com.architectcoders.data
+package com.architectcoders.source.remote
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
@@ -6,17 +6,17 @@ import kotlinx.android.parcel.Parcelize
 
 data class MovieDbResult(
     val page: Int,
-    val results: List<Movie>,
+    val results: List<MovieDto>,
     @SerializedName("total_pages") val totalPages: Int,
     @SerializedName("total_results") val totalResults: Int
 )
 
 @Parcelize
-data class Movie(
+data class MovieDto(
+    val id: Int,
     val adult: Boolean,
     @SerializedName("backdrop_path") val backdropPath: String,
     @SerializedName("genre_ids") val genreIds: List<Int>,
-    val id: Int,
     @SerializedName("original_language") val originalLanguage: String,
     @SerializedName("original_title") val originalTitle: String,
     val overview: String,

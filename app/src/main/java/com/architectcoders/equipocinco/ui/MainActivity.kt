@@ -5,12 +5,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
-import com.architectcoders.data.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.generic.util.toast
 import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
 import com.architectcoders.presentation.viewmodels.MovieViewModel
 import com.architectcoders.presentation.viewmodels.MovieViewModel.UiModel
+import com.architectcoders.Movie
 import kotlinx.android.synthetic.main.fragment_movies.*
 import javax.inject.Inject
 
