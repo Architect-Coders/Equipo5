@@ -1,15 +1,11 @@
 apply plugin: 'com.android.application'
-
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'com.justpinch.androidanalyzer'
 
 android {
-    Properties properties = new Properties()
-    properties.load(project.file('../local.properties').newDataInputStream())
-
     compileSdkVersion versionNumbers.compileSdkVersion
     buildToolsVersion versionNumbers.buildToolsVersion
     defaultConfig {
@@ -19,7 +15,8 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        resValue "string", "movie_db_api_key", properties.getProperty("movie_db_api_key", "")
+        resValue "string", "movie_db_api_key", MOVIE_DB_API_KEY
+        buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
     }
     buildTypes {
         release {
@@ -27,14 +24,33 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
+    implementation project(':generic')
+    implementation project(':domain')
+    implementation project(':presentation')
+    implementation project(':data')
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation jetBrainsDependencies.values()
     implementation androidXDependencies.values()
+    implementation androidDependenciesFramework.values()
+    kapt androidKaptLibs.values()
     testImplementation testDependencies.values()
     androidTestImplementation androidTestDependencies.values()
+    implementation retrofitDependencies.values()
+    implementation loggingInterceptorDependencies.values()
+    implementation coroutinesDependencies.values()
+    implementation coroutinesAdapterDependencies.values()
+    implementation navigationDepdendencies.values()
 }
 
 androidAnalyzer {
