@@ -13,12 +13,17 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.architectcoders.data.Movie
 import com.architectcoders.equipocinco.R
+import com.architectcoders.equipocinco.framework.SearchManager
+import com.architectcoders.generic.framework.extension.isFilled
+import com.architectcoders.generic.framework.extension.view.setVisibleOrGone
 import com.architectcoders.presentation.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_movies.*
+import kotlinx.android.synthetic.main.progress_bar.*
+import kotlinx.android.synthetic.main.search.*
 
 class MoviesFragment : Fragment() {
 
-    private lateinit var navController : NavController
+    private lateinit var navController: NavController
 
     private val viewModel by lazy {
         ViewModelProvider(
@@ -29,10 +34,20 @@ class MoviesFragment : Fragment() {
 
     private var adapter: MovieAdapter? = null
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_movies, container, false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
         viewModel.model.observe(this, Observer(::updateUI))
+
+        initClSearch()
     }
 
     private fun updateUI(model: MovieViewModel.UiModel) {
@@ -56,14 +71,25 @@ class MoviesFragment : Fragment() {
                 )
             }
             rv.adapter = adapter
+            pb.hide()
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_movies, container, false)
+    private fun initClSearch() {
+        SearchManager(et, ib, object : SearchManager.Listener {
+            override fun onTextChanged(query: String) {
+                if (query.isFilled()) {
+                    searchMovies(query)
+                }
+            }
+
+            override fun onShowProgressBar(show: Boolean) {
+                pb.setVisibleOrGone(show)
+            }
+        })
+    }
+
+    private fun searchMovies(query: String) {
+        viewModel.onSearchMovies(query)
     }
 }

@@ -33,4 +33,11 @@ class MovieViewModel(private val apiRepo: ApiRepo, uiDispatcher: CoroutineDispat
             _model.value = UiModel.Content(apiRepo.getPopularMovies().results)
         }
     }
+
+    fun onSearchMovies(query: String) {
+        launch {
+            _model.value = UiModel.Loading
+            _model.value = UiModel.Content(apiRepo.searchMoviesAsync(query).results)
+        }
+    }
 }

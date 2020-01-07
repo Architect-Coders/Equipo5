@@ -28,3 +28,7 @@ dependencies {
     implementation glideDependencies.values()
     annotationProcessor glideCompilerDependencies.values()
 }
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions.freeCompilerArgs += ["-Xuse-experimental=kotlin.Experimental"]
+}
