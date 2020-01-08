@@ -8,5 +8,4 @@ class MovieListRemoteDataSource constructor(private val service: ApiService) : B
     suspend fun fetchMovies(): Result<MovieDbResult> {
         return getResult { service.getPopularMoviesAsync() }
     }
-
 }
