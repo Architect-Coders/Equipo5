@@ -13,6 +13,9 @@ interface MovieDao {
     @Query("SELECT * FROM movies")
     fun getMovieList(): List<MovieDb>
 
+    @Query("SELECT * FROM movies WHERE ")
+    fun getMovieList(query: String): List<MovieDb>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(movies: List<MovieDb>)
 }

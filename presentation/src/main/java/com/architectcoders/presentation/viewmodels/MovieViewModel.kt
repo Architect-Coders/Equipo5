@@ -40,4 +40,11 @@ class MovieViewModel(private val apiRepo: ApiRepo, uiDispatcher: CoroutineDispat
             is DataState.Error -> {}
         }
     }
+
+    fun onSearchMovies(query: String) {
+        launch {
+            _model.value = UiModel.Loading
+            _model.value = UiModel.Content(apiRepo.searchMovies(query))
+        }
+    }
 }
