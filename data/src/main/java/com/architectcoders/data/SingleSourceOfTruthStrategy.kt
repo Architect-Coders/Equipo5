@@ -1,6 +1,5 @@
 package com.architectcoders.data
 
-import android.util.Log
 import com.architectcoders.data.Result.Status.*
 
 
@@ -14,16 +13,12 @@ suspend fun <T, A> singleSourceOfData(
         networkCall.invoke().also { resultNetworkCall ->
             when (resultNetworkCall.status) {
                 SUCCESS -> {
-                    Log.d("Gabriel","SUCCESS")
                     resultNetworkCall.data?.let {
-                        Log.d("Gabriel","SUCCESS there is data ")
                         saveCallResult(it)
                     }
                 }
 
                 ERROR -> {
-                    Log.d("Gabriel","ERROR")
-
                     return DataState.Error(resultNetworkCall.message!!)
                 }
             }
