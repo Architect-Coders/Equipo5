@@ -1,18 +1,19 @@
 package com.architectcoders
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Movie(
     val id: Int,
-    val adult: Boolean,
+    val title: String,
+    val overview: String,
+    val releaseDate: String,
+    val posterPath: String,
     val backdropPath: String,
-    //val genreIds: List<Int>,
     val originalLanguage: String,
     val originalTitle: String,
-    val overview: String,
     val popularity: Double,
-    val posterPath: String,
-    val releaseDate: String,
-    val title: String,
-    val video: Boolean,
     val voteAverage: Double,
-    val voteCount: Int
-)
+    val favorite: Boolean
+) : Parcelable

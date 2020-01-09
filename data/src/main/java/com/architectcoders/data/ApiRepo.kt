@@ -1,8 +1,8 @@
 package com.architectcoders.data
 
-import com.architectcoders.mappers.mapRemoteMovieToDb
 import com.architectcoders.source.local.LocalDataSource
 import com.architectcoders.Movie
+import com.architectcoders.mappers.mapServerMovieToDomain
 import com.architectcoders.source.remote.MovieListRemoteDataSource
 
 
@@ -14,9 +14,13 @@ class ApiRepo(
     suspend fun getPopularMovies(): DataState<List<Movie>> = singleSourceOfData(
         databaseQuery = { localDataSource.getPopularMovies() },
         networkCall = { remoteDataSource.fetchMovies() },
-        saveCallResult = { localDataSource.saveMovies(it.results.map(mapRemoteMovieToDb)) },
+        saveCallResult = { localDataSource.saveMovies(it.results.map(mapServerMovieToDomain)) },
         shouldFetch = { (sessionManager.isConnectedToTheInternet()) })
 
 
-    suspend fun searchMovies(query: String) = localDataSource.getPopularMovies(query)
+    suspend fun searchMovies(query: String) = singleSourceOfData(
+        databaseQuery = { localDataSource.getPopularMovies(query) },
+        networkCall = { remoteDataSource.fetchMovies(query) },
+        saveCallResult = { localDataSource.saveMovies(it.results.map(mapServerMovieToDomain)) },
+        shouldFetch = { (sessionManager.isConnectedToTheInternet()) })
 }

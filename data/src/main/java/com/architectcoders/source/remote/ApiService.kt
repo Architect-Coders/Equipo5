@@ -13,9 +13,9 @@ interface ApiService {
     }
 
     @GET("discover/movie?sort_by=popularity.desc")
-   suspend fun getPopularMoviesAsync(
+    fun getPopularMoviesAsync(
         @Query("api_key") apiKey: String = BuildConfig.movie_db_api_key
-    ): Response<MovieDbResult>
+    ): Deferred<MovieDbResult>
 
 
     @GET("search/movie")

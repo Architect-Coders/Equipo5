@@ -1,45 +1,53 @@
 package com.architectcoders.mappers
 
 import com.architectcoders.Movie
-import com.architectcoders.source.local.MovieDb
-import com.architectcoders.source.remote.MovieDto
+import com.architectcoders.source.local.MovieDb as RoomMovie
+import com.architectcoders.source.remote.MovieDto as ServerMovie
 
+fun RoomMovie.toDomainMovie(): Movie = Movie(
+    id,
+    title,
+    overview,
+    releaseDate,
+    posterPath,
+    backdropPath,
+    originalLanguage,
+    originalTitle,
+    popularity,
+    voteAverage,
+    favorite
+)
 
-val mapRemoteMovieToDb: (MovieDto) -> MovieDb = { movie ->
-    MovieDb(
+val mapDomainMovieToDb: (Movie) -> RoomMovie = { movie ->
+    RoomMovie(
         movie.id,
-        movie.adult,
+        movie.title,
+        movie.overview,
+        movie.releaseDate,
+        movie.posterPath,
         movie.backdropPath,
-        //  movie.genreIds,
         movie.originalLanguage,
         movie.originalTitle,
-        movie.overview,
         movie.popularity,
-        movie.posterPath,
-        movie.releaseDate,
-        movie.originalTitle,
-        movie.video,
         movie.voteAverage,
-        movie.voteCount
+        movie.favorite
     )
 }
 
-
-fun MovieDb.toDomainMovie(): Movie =
+val mapServerMovieToDomain: (ServerMovie) -> Movie = { movie ->
     Movie(
-        id,
-        adult,
-        backdropPath,
-        //  movie.genreIds,
-        originalLanguage,
-        originalTitle,
-        overview,
-        popularity,
-        posterPath,
-        releaseDate,
-        originalTitle,
-        video,
-        voteAverage,
-        voteCount
+        movie.id,
+        movie.title,
+        movie.overview,
+        movie.releaseDate ?: "no release date ",
+        movie.posterPath ?: "no poster path",
+        movie.backdropPath ?: "no poster backdropPath",
+        movie.originalLanguage,
+        movie.originalTitle,
+        movie.popularity,
+        movie.voteAverage,
+        false
     )
+}
+
 
