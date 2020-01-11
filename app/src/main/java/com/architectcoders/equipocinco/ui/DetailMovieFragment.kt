@@ -64,7 +64,7 @@ class DetailMovieFragment : Fragment() {
         }
     }
 
-    private fun Movie.getOriginalTitle(): String = if(title == originalTitle)
+    private fun Movie.getOriginalTitle(): String = if (title == originalTitle)
         EMPTY
     else
         originalTitle
