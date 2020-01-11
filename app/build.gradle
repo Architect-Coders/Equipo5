@@ -3,9 +3,9 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs.kotlin"
+apply plugin: 'com.justpinch.androidanalyzer'
 
 android {
-
     compileSdkVersion versionNumbers.compileSdkVersion
     buildToolsVersion versionNumbers.buildToolsVersion
     defaultConfig {
@@ -51,4 +51,14 @@ dependencies {
     implementation coroutinesDependencies.values()
     implementation coroutinesAdapterDependencies.values()
     implementation navigationDepdendencies.values()
+}
+
+androidAnalyzer {
+    applicationId = 'com.architectcoders.equipocinco'
+    projectName = 'AC Team5'
+    projectVersion = '1.0.0'
+    detekt = true
+    unitTestCoverage = true
+    packageName = 'com.architectcoders.equipocinco'
+    buildVariant = 'debug'
 }
