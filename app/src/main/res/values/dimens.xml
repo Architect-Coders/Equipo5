@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="height_image_detail_movie">300dp</dimen>
-    <dimen name="margin_description_text">20dp</dimen>
     <dimen name="radius_search">6dp</dimen>
+    <dimen name="margin_detail_movie_data">20dp</dimen>
 </resources>
