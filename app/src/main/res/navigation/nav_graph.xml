@@ -21,6 +21,10 @@
         android:id="@+id/detailMovieFragment"
         android:name="com.architectcoders.equipocinco.ui.DetailMovieFragment"
         android:label="fragment_detail_mobie"
-        tools:layout="@layout/fragment_detail_movie" />
+        tools:layout="@layout/fragment_detail_movie" >
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="architectcoders.com/equipo5/{DetailMovieFragment::id}" />
+    </fragment>
 
 </navigation>
