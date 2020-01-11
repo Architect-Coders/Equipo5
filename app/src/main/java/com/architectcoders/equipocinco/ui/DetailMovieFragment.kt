@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.architectcoders.data.Movie
 import com.architectcoders.equipocinco.R
+import com.architectcoders.generic.framework.extension.EMPTY
 import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel.UiModel.Loading
@@ -52,16 +53,30 @@ class DetailMovieFragment : Fragment() {
     }
 
     private fun updateUI(movie: Movie) {
-        ivMoviePoster.loadUrl("$POSTER_BASE_URL${movie.posterPath}")
-        tvTitle.text = movie.title
-        tvDescription.text = movie.overview
-        tvRateNumber.text = movie.voteAverage.convertVoteAverageFromTenToFive()
+        movie.run {
+            ivMoviePoster.loadUrl("$POSTER_BASE_URL${posterPath}")
+            tvTitle.text = title
+            tvOriginalTitle.text = getOriginalTitle()
+            tvPopularity.text = getPopularity()
+            tvRateNumber.text = getVoteAverage()
+            tvReleaseDate.text = getReleaseDateFormatted()
+            tvDescription.text = overview
+        }
     }
 
-    private fun Double.convertVoteAverageFromTenToFive(): String {
+    private fun Movie.getOriginalTitle(): String = if(title == originalTitle)
+        EMPTY
+    else
+        originalTitle
+
+    private fun Movie.getPopularity(): String = "Popularity: $popularity"
+
+    private fun Movie.getVoteAverage(): String {
         val df = DecimalFormat(VOTE_RATING_PATTERN)
         df.roundingMode = RoundingMode.CEILING
-        return df.format(this / 2).toString()
+        return df.format(voteAverage / 2).toString()
     }
+
+    private fun Movie.getReleaseDateFormatted() = "Release date: $releaseDate"
 
 }
