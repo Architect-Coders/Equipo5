@@ -71,11 +71,10 @@ class DetailMovieFragment : Fragment() {
 
     private fun Movie.getPopularity(): String = "Popularity: $popularity"
 
-    private fun Movie.getVoteAverage(): String {
-        val df = DecimalFormat(VOTE_RATING_PATTERN)
-        df.roundingMode = RoundingMode.CEILING
-        return df.format(voteAverage / 2).toString()
-    }
+    private fun Movie.getVoteAverage(): String = DecimalFormat(VOTE_RATING_PATTERN)
+        .apply {
+            roundingMode = RoundingMode.CEILING
+        }.format(voteAverage / 2).toString()
 
     private fun Movie.getReleaseDateFormatted() = "Release date: $releaseDate"
 
