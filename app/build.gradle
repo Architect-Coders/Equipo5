@@ -51,7 +51,4 @@ dependencies {
     implementation coroutinesDependencies.values()
     implementation coroutinesAdapterDependencies.values()
     implementation navigationDepdendencies.values()
-
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc03"
-    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0-rc03"
 }
