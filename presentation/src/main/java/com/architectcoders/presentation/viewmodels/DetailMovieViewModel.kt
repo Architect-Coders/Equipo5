@@ -2,7 +2,7 @@ package com.architectcoders.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.architectcoders.data.Movie
+import com.architectcoders.Movie
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 

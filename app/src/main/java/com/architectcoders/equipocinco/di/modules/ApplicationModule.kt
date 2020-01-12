@@ -1,6 +1,5 @@
 package com.architectcoders.equipocinco.di.modules
 
-import android.app.Application
 import com.architectcoders.equipocinco.BuildConfig
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import dagger.Module
@@ -11,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
-class ApplicationModule(private val context: Application) {
+class ApplicationModule {
 
     @Provides
     fun getClient(): OkHttpClient {
