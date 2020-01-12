@@ -30,6 +30,9 @@ ext {
     androidx_junit_version = "1.1.1"
     espresso_core_version = "3.2.0"
 
+    // AndroidAnalyzer
+    android_analyzer_version = "1.1.1"
+
     // Dagger
     daggerVersion = '2.24'
 
@@ -57,6 +60,9 @@ ext {
     ]
 
     classpathDependencies = [
+            androidToolsBuild       : "com.android.tools.build:gradle:${gradle_version}",
+            kotlinGradlePlugin      : "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
+            androidAnalyzer         : "com.justpinch:androidanalyzer:${android_analyzer_version}",
             androidToolsBuild : "com.android.tools.build:gradle:${gradle_version}",
             kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
             safeArgs          : "androidx.navigation:navigation-safe-args-gradle-plugin:${safeargs_version}"

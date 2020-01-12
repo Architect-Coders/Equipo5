@@ -2,4 +2,5 @@
 <resources>
     <dimen name="height_image_detail_movie">300dp</dimen>
     <dimen name="margin_description_text">20dp</dimen>
+    <dimen name="radius_search">6dp</dimen>
 </resources>
