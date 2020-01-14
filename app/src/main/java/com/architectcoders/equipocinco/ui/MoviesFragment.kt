@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.architectcoders.data.Movie
+import com.architectcoders.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.framework.SearchManager
 import com.architectcoders.generic.framework.extension.isFilled
@@ -45,7 +45,7 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
-        viewModel.model.observe(this, Observer(::updateUI))
+        viewModel.model.observe(viewLifecycleOwner, Observer(::updateUI))
 
         initClSearch()
     }

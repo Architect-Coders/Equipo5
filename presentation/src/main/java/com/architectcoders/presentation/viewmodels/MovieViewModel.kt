@@ -1,9 +1,9 @@
 package com.architectcoders.presentation.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
 import com.architectcoders.data.ApiRepo
-import com.architectcoders.data.Movie
+import com.architectcoders.data.DataState
+import com.architectcoders.Movie
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
@@ -30,14 +30,21 @@ class MovieViewModel(private val apiRepo: ApiRepo, uiDispatcher: CoroutineDispat
     fun onRequestMovieList() {
         launch {
             _model.value = UiModel.Loading
-            _model.value = UiModel.Content(apiRepo.getPopularMovies().results)
+            handleMoviesResponse(apiRepo.getPopularMovies())
         }
     }
 
     fun onSearchMovies(query: String) {
         launch {
             _model.value = UiModel.Loading
-            _model.value = UiModel.Content(apiRepo.searchMoviesAsync(query).results)
+            handleMoviesResponse(apiRepo.searchMovies(query))
+        }
+    }
+
+    private fun handleMoviesResponse(dataState: DataState<List<Movie>>) {
+        when (dataState) {
+            is DataState.Success -> { _model.value = UiModel.Content(dataState.data) }
+            is DataState.Error -> {}
         }
     }
 }

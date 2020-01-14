@@ -65,7 +65,7 @@ ext {
             androidAnalyzer         : "com.justpinch:androidanalyzer:${android_analyzer_version}",
             androidToolsBuild : "com.android.tools.build:gradle:${gradle_version}",
             kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
-            safeArgs: "androidx.navigation:navigation-safe-args-gradle-plugin:${safeargs_version}"
+            safeArgs          : "androidx.navigation:navigation-safe-args-gradle-plugin:${safeargs_version}"
     ]
 
     androidXDependencies = [
@@ -89,7 +89,8 @@ ext {
     ]
 
     androidKaptLibs = [
-            daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}"
+            daggerCompiler: "com.google.dagger:dagger-compiler:${daggerVersion}",
+            roomCompiler  : 'androidx.room:room-compiler:2.2.1'
     ]
 
     retrofitDependencies = [
@@ -112,6 +113,11 @@ ext {
     navigationDepdendencies = [
             navigationFragment: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentVersion}",
             navigationUi      : "androidx.navigation:navigation-ui-ktx:${navigationUiVersion}",
+    ]
+
+    roomDependencies = [
+            navigationRoomRuntime: 'androidx.room:room-runtime:2.2.3',
+            room                 : "androidx.room:room-ktx:2.2.3"
     ]
 
     glideDependencies = [

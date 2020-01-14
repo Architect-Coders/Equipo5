@@ -10,3 +10,7 @@ fun String?.isFilled(): Boolean {
     }
     return !this.isNullOrEmpty()
 }
+
+fun String.enclosingPercentage(): String {
+    return "%$this%"
+}
