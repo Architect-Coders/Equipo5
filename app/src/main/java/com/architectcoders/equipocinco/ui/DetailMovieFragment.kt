@@ -9,19 +9,19 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.architectcoders.Movie
 import com.architectcoders.equipocinco.R
-import com.architectcoders.generic.framework.extension.EMPTY
+import com.architectcoders.equipocinco.extensions.getOriginalTitle
+import com.architectcoders.equipocinco.extensions.getPopularity
+import com.architectcoders.equipocinco.extensions.getReleaseDateFormatted
+import com.architectcoders.equipocinco.extensions.getVoteAverage
 import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel.UiModel.Loading
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
-import java.math.RoundingMode
-import java.text.DecimalFormat
 
 class DetailMovieFragment : Fragment() {
 
     companion object {
         private const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/original/"
-        private const val VOTE_RATING_PATTERN = "#.#"
         const val MOVIE_ID_KEY = "DetailMovieFragment::id"
 
     }
@@ -63,19 +63,5 @@ class DetailMovieFragment : Fragment() {
             tvDescription.text = overview
         }
     }
-
-    private fun Movie.getOriginalTitle(): String = if (title == originalTitle)
-        EMPTY
-    else
-        originalTitle
-
-    private fun Movie.getPopularity(): String = "Popularity: $popularity"
-
-    private fun Movie.getVoteAverage(): String = DecimalFormat(VOTE_RATING_PATTERN)
-        .apply {
-            roundingMode = RoundingMode.CEILING
-        }.format(voteAverage / 2).toString()
-
-    private fun Movie.getReleaseDateFormatted() = "Release date: $releaseDate"
 
 }
