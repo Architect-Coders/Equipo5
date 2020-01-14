@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.architectcoders.data.Movie
+import com.architectcoders.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.generic.framework.extension.EMPTY
 import com.architectcoders.generic.framework.extension.view.loadUrl
