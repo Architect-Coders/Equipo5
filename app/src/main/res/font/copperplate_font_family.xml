@@ -32,4 +32,11 @@
         android:fontStyle="normal"
         android:fontWeight="700" />
 
+    <!-- bold -->
+ <!--   <font
+        app:font="@font/copperplate"
+        app:fontStyle="italic"
+        android:s
+        app:fontWeight="50" />-->
+
 </font-family>

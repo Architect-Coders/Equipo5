@@ -24,4 +24,14 @@
         <item name="layout_constraintTop_toTopOf">parent</item>
         <item name="layout_constraintDimensionRatio">H,1:1.5</item>
     </style>
+
+    <style name="BottomNavigationViewTextStyleActive">]
+        <item name="android:fontFamily">@font/copperplate</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="BottomNavigationViewTextStyleInactive">]
+        <item name="android:fontFamily">@font/copperplate</item>
+        <item name="android:textSize">8sp</item>
+    </style>
 </resources>
