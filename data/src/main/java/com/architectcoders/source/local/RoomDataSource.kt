@@ -16,6 +16,12 @@ class RoomDataSource(private val movieDao: MovieDao) : LocalDataSource {
         }
     }
 
+    override suspend fun getPopularMoviesByLocation(locationCode: String?): List<Movie> = withContext(Dispatchers.IO) {
+        movieDao.getMovieList().map { movieDb ->
+            movieDb.toDomainMovie()
+        }
+    }
+
     override suspend fun getPopularMovies(query: String): List<Movie> = withContext(Dispatchers.IO) {
             movieDao.getMovieList(query.enclosingPercentage()).map { movieDb -> movieDb.toDomainMovie() }
         }

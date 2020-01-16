@@ -8,6 +8,10 @@ class MovieListRemoteDataSource constructor(private val service: ApiService) : B
         return getResult { service.getPopularMoviesAsync() }
     }
 
+    suspend fun fetchMoviesByLocation(locationCode : String?): Result<MovieDbResult> {
+        return getResult { service.getPopularMoviesAsync() }
+    }
+
     suspend fun fetchMovies(query: String): Result<MovieDbResult> {
         return getResult { service.searchMoviesAsync(query) }
     }
