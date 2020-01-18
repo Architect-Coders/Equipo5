@@ -52,6 +52,8 @@ dependencies {
     implementation coroutinesDependencies.values()
     implementation coroutinesAdapterDependencies.values()
     implementation navigationDepdendencies.values()
+
+    implementation 'com.karumi:dexter:5.0.0'
     implementation 'com.google.android.gms:play-services-location:17.0.0'
 }
 

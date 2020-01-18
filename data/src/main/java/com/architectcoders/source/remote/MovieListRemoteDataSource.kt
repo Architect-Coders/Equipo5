@@ -4,15 +4,11 @@ import com.architectcoders.data.Result
 
 class MovieListRemoteDataSource constructor(private val service: ApiService) : BaseDataSource() {
 
-    suspend fun fetchMovies(): Result<MovieDbResult> {
-        return getResult { service.getPopularMoviesAsync() }
+    suspend fun fetchMovies(locationCode : String): Result<MovieDbResult> {
+        return getResult { service.getPopularMoviesAsync(region = locationCode) }
     }
 
-    suspend fun fetchMoviesByLocation(locationCode : String?): Result<MovieDbResult> {
-        return getResult { service.getPopularMoviesAsync() }
-    }
-
-    suspend fun fetchMovies(query: String): Result<MovieDbResult> {
+    suspend fun fetchMoviesBySearch(query: String): Result<MovieDbResult> {
         return getResult { service.searchMoviesAsync(query) }
     }
 }
