@@ -40,7 +40,7 @@ class MoviesViewModelModule {
     @Provides
     @IntoMap
     @ViewModelKey(DetailMovieViewModel::class)
-    fun detailMovieViewModel(): ViewModel {
-        return DetailMovieViewModel(Dispatchers.Main)
+    fun detailMovieViewModel(apiRepo: ApiRepo): ViewModel {
+        return DetailMovieViewModel(apiRepo, Dispatchers.Main)
     }
 }

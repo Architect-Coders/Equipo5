@@ -17,6 +17,12 @@ class ApiRepo(
         saveCallResult = { localDataSource.saveMovies(it.results.map(mapServerMovieToDomain)) },
         shouldFetch = { (sessionManager.isConnectedToTheInternet()) })
 
+    suspend fun getMovieById(id: Int): DataState<Movie> = singleSourceOfData(
+        databaseQuery = { localDataSource.getMovie(id) },
+        networkCall = { remoteDataSource.fetchMovies() },
+        saveCallResult = { localDataSource.saveMovies(it.results.map(mapServerMovieToDomain)) },
+        shouldFetch = { (sessionManager.isConnectedToTheInternet()) })
+
 
     suspend fun searchMovies(query: String) = singleSourceOfData(
         databaseQuery = { localDataSource.getPopularMovies(query) },
