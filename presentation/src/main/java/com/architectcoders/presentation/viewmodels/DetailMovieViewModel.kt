@@ -25,14 +25,8 @@ class DetailMovieViewModel(private val apiRepo: ApiRepo, uiDispatcher: Coroutine
     fun onMovieDetailLoading(id: Int) {
         launch {
             _model.value = UiModel.Loading
-            handleGetMovieByIdResponse(apiRepo.getMovieById(id))
+            _model.value = UiModel.Content(apiRepo.getMovieById(id))
         }
     }
 
-    private fun handleGetMovieByIdResponse(dataState: DataState<Movie>) {
-        when (dataState) {
-            is DataState.Success -> _model.value = UiModel.Content(dataState.data)
-            is DataState.Error -> println("Error getting the movie by id")
-        }
-    }
 }
