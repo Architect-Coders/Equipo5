@@ -48,6 +48,10 @@ ext {
 
     glideVersion = "4.9.0"
 
+    servicesLocationVersion = "17.0.0"
+
+    dexterVersion = "5.0.0"
+
     versionNumbers = [
             compileSdkVersion: 29,
             buildToolsVersion: "29.0.2",
@@ -86,6 +90,8 @@ ext {
 
     androidDependenciesFramework = [
             dagger: "com.google.dagger:dagger:${daggerVersion}",
+            servicesLocation: "com.google.android.gms:play-services-location:${servicesLocationVersion}"
+
     ]
 
     androidKaptLibs = [
@@ -126,5 +132,9 @@ ext {
 
     glideCompilerDependencies = [
             glide: "com.github.bumptech.glide:compiler:${glideVersion}"
+    ]
+
+    dexterDependencies = [
+            dexter : "com.karumi:dexter:${dexterVersion}"
     ]
 }
