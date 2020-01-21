@@ -15,7 +15,6 @@ import com.architectcoders.equipocinco.extensions.getReleaseDateFormatted
 import com.architectcoders.equipocinco.extensions.getVoteAverage
 import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
-import com.architectcoders.presentation.viewmodels.DetailMovieViewModel.UiModel.Loading
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
 
 class DetailMovieFragment : Fragment() {
@@ -39,8 +38,9 @@ class DetailMovieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         arguments?.let { bundle ->
-            val movie = bundle.getParcelable<Movie>(MOVIE_ID_KEY)
-            viewModel.onMovieDetailLoading(movie)
+            bundle.getInt(MOVIE_ID_KEY)?.let {
+                viewModel.onMovieDetailLoading(it)
+            }
             viewModel.model.observe(this, Observer(::refresh))
         }
         return inflater.inflate(R.layout.fragment_detail_movie, container, false)
@@ -48,7 +48,7 @@ class DetailMovieFragment : Fragment() {
 
     private fun refresh(model: DetailMovieViewModel.UiModel) {
         when (model) {
-            is Loading -> updateUI(model.movie)
+            is DetailMovieViewModel.UiModel.Content -> updateUI(model.movie)
         }
     }
 

@@ -77,7 +77,7 @@ class MoviesFragment : Fragment() {
             adapter = MovieAdapter(items.toMutableList()) {
                 navController.navigate(
                     R.id.action_moviesFragment_to_detailMovieFragment,
-                    bundleOf(DetailMovieFragment.MOVIE_ID_KEY to it)
+                    bundleOf(DetailMovieFragment.MOVIE_ID_KEY to it.id)
                 )
             }
             rv.adapter = adapter

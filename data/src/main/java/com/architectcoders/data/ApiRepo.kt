@@ -24,4 +24,6 @@ class ApiRepo(
         networkCall = { remoteDataSource.fetchMoviesBySearch(query) },
         saveCallResult = { localDataSource.saveMovies(it.results.map(mapServerMovieToDomain)) },
         shouldFetch = { (sessionManager.isConnectedToTheInternet()) })
+
+    suspend fun getMovieById(id: Int): Movie = localDataSource.getMovie(id)
 }
