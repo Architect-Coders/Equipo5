@@ -3,6 +3,9 @@ package com.architectcoders.equipocinco.di.modules
 import android.app.Activity
 import com.architectcoders.data.ApiRepo
 import com.architectcoders.data.SessionManager
+import com.architectcoders.equipocinco.data.AndroidPermissionChecker
+import com.architectcoders.equipocinco.data.PlayServicesLocationDataSource
+import com.architectcoders.location.LocationRepository
 import com.architectcoders.source.local.LocalDataSource
 import com.architectcoders.source.local.MovieDao
 import com.architectcoders.source.local.RoomDataSource
@@ -31,11 +34,28 @@ class MoviesModule(private val context: Activity) {
     }
 
     @Provides
+    fun getPlayServicesLocationDataSource(): PlayServicesLocationDataSource {
+        return PlayServicesLocationDataSource(context.application)
+    }
+
+    @Provides
+    fun getAndroidPermissionChecker(): AndroidPermissionChecker {
+        return AndroidPermissionChecker(context.application)
+    }
+
+    @Provides
+    fun getLocationRepository(locationDataSource: PlayServicesLocationDataSource,
+                              permissionChecker: AndroidPermissionChecker): LocationRepository {
+        return LocationRepository(locationDataSource, permissionChecker)
+    }
+
+    @Provides
     fun getApiRepository(
         moviesListRemoteDataSource: MovieListRemoteDataSource,
         movieLocalDataSource: LocalDataSource,
-        sessionManager: SessionManager
-    ): ApiRepo {
-        return ApiRepo(moviesListRemoteDataSource, movieLocalDataSource, sessionManager)
+        sessionManager: SessionManager,
+        locationRepository: LocationRepository
+        ): ApiRepo {
+        return ApiRepo(moviesListRemoteDataSource, movieLocalDataSource, sessionManager, locationRepository)
     }
 }
