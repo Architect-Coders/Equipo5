@@ -1,6 +1,7 @@
 package com.architectcoders.data
 
 import com.architectcoders.data.Result.Status.*
+import com.architectcoders.domain.state.DataState
 
 
 suspend fun <T, A> singleSourceOfData(
@@ -33,13 +34,4 @@ private suspend fun <T> fetchFromDatabase(databaseQuery: suspend () -> T) =
         DataState.Success(model)
     }
 
-
-/***
- * This class will be moved to the domain layer later on
- * since any domain DataState should be out of the data(repository) scope
- */
-sealed class DataState<out T> {
-    data class Success<T>(val data: T) : DataState<T>()
-    data class Error(val message: String, val cause: Exception? = null) : DataState<Nothing>()
-}
 

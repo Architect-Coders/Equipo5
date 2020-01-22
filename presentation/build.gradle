@@ -30,7 +30,8 @@ android {
 dependencies {
     //Modules
   //  implementation project(':domain')
-    implementation project(':data')
+    implementation project(':domain')
+    implementation project(':usecases')
     implementation project(':generic')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation jetBrainsDependencies.values()

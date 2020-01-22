@@ -1,6 +1,6 @@
 package com.architectcoders.source.local
 
-import com.architectcoders.Movie
+import com.architectcoders.domain.model.Movie
 import com.architectcoders.generic.framework.extension.enclosingPercentage
 import com.architectcoders.mappers.mapDomainMovieToDb
 import com.architectcoders.mappers.toDomainMovie
@@ -9,12 +9,6 @@ import kotlinx.coroutines.withContext
 
 
 class RoomDataSource(private val movieDao: MovieDao) : LocalDataSource {
-
-    override suspend fun getPopularMovies() = withContext(Dispatchers.IO) {
-        movieDao.getMovieList().map { movieDb ->
-            movieDb.toDomainMovie()
-        }
-    }
 
     override suspend fun getPopularMovies(locationCode: String?): List<Movie> = withContext(Dispatchers.IO) {
         movieDao.getMovieList().map { movieDb ->

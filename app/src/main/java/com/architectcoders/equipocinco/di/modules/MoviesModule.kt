@@ -11,6 +11,9 @@ import com.architectcoders.source.local.MovieDao
 import com.architectcoders.source.local.RoomDataSource
 import com.architectcoders.source.remote.ApiService
 import com.architectcoders.source.remote.MovieListRemoteDataSource
+import com.gabriel.usecases.GetMovieUseCase
+import com.gabriel.usecases.GetPopularMoviesUseCase
+import com.gabriel.usecases.GetSearchMoviesUseCase
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -44,10 +47,28 @@ class MoviesModule(private val context: Activity) {
     }
 
     @Provides
-    fun getLocationRepository(locationDataSource: PlayServicesLocationDataSource,
-                              permissionChecker: AndroidPermissionChecker): LocationRepository {
+    fun getLocationRepository(
+        locationDataSource: PlayServicesLocationDataSource,
+        permissionChecker: AndroidPermissionChecker
+    ): LocationRepository {
         return LocationRepository(locationDataSource, permissionChecker)
     }
+
+    @Provides
+    fun getPopularMoviesUseCase(moviesRepository: ApiRepo): GetPopularMoviesUseCase {
+        return GetPopularMoviesUseCase(moviesRepository)
+    }
+
+    @Provides
+    fun getSearchMoviesUseCase(moviesRepository: ApiRepo): GetSearchMoviesUseCase {
+        return GetSearchMoviesUseCase(moviesRepository)
+    }
+
+    @Provides
+    fun getMovieUseCase(moviesRepository: ApiRepo): GetMovieUseCase {
+        return GetMovieUseCase(moviesRepository)
+    }
+
 
     @Provides
     fun getApiRepository(
@@ -55,7 +76,12 @@ class MoviesModule(private val context: Activity) {
         movieLocalDataSource: LocalDataSource,
         sessionManager: SessionManager,
         locationRepository: LocationRepository
-        ): ApiRepo {
-        return ApiRepo(moviesListRemoteDataSource, movieLocalDataSource, sessionManager, locationRepository)
+    ): ApiRepo {
+        return ApiRepo(
+            moviesListRemoteDataSource,
+            movieLocalDataSource,
+            sessionManager,
+            locationRepository
+        )
     }
 }

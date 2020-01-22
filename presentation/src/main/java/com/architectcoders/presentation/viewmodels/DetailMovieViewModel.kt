@@ -2,13 +2,12 @@ package com.architectcoders.presentation.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.architectcoders.Movie
-import com.architectcoders.data.ApiRepo
-import com.architectcoders.data.DataState
+import com.architectcoders.domain.model.Movie
+import com.gabriel.usecases.GetMovieUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
-class DetailMovieViewModel(private val apiRepo: ApiRepo, uiDispatcher: CoroutineDispatcher) :
+class DetailMovieViewModel(private val getMovieUseCase: GetMovieUseCase,uiDispatcher: CoroutineDispatcher) :
     BaseViewModel(uiDispatcher) {
 
     private val _model = MutableLiveData<UiModel>()
@@ -25,8 +24,11 @@ class DetailMovieViewModel(private val apiRepo: ApiRepo, uiDispatcher: Coroutine
     fun onMovieDetailLoading(id: Int) {
         launch {
             _model.value = UiModel.Loading
-            _model.value = UiModel.Content(apiRepo.getMovieById(id))
+            getMovieUseCase.execute(::handleSuccessMovie, params = id)
         }
     }
+
+    private fun handleSuccessMovie(movie: Movie) {
+        _model.value = UiModel.Content(movie)    }
 
 }

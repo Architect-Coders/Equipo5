@@ -1,6 +1,6 @@
 package com.architectcoders.source.local
 
-import com.architectcoders.Movie
+import com.architectcoders.domain.model.Movie
 
 
 interface LocalDataSource {

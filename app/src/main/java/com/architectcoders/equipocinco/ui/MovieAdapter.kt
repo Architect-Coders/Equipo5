@@ -6,7 +6,7 @@ import com.architectcoders.equipocinco.R
 import com.architectcoders.generic.framework.extension.view.inflate
 import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.generic.ui.view.adapter.BaseAdapter
-import com.architectcoders.Movie
+import com.architectcoders.domain.model.Movie
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 class MovieAdapter(

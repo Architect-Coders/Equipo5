@@ -36,6 +36,7 @@ android {
 
 dependencies {
     implementation project(':generic')
+    implementation project(':usecases')
     implementation project(':domain')
     implementation project(':presentation')
     implementation project(':data')

@@ -1,13 +1,17 @@
 package com.architectcoders.presentation.viewmodels
 
 import androidx.lifecycle.*
-import com.architectcoders.data.ApiRepo
-import com.architectcoders.data.DataState
-import com.architectcoders.Movie
+import com.architectcoders.domain.model.Movie
+import com.gabriel.usecases.GetPopularMoviesUseCase
+import com.gabriel.usecases.GetSearchMoviesUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
-class MovieViewModel(private val apiRepo: ApiRepo, uiDispatcher: CoroutineDispatcher) :
+class MovieViewModel(
+    private val getPopularMovieListUseCase: GetPopularMoviesUseCase,
+    private val getSearchMovieListUseCase: GetSearchMoviesUseCase,
+    uiDispatcher: CoroutineDispatcher
+) :
     BaseViewModel(uiDispatcher) {
 
     private val _model = MutableLiveData<UiModel>()
@@ -30,21 +34,22 @@ class MovieViewModel(private val apiRepo: ApiRepo, uiDispatcher: CoroutineDispat
     fun onRequestMovieList() {
         launch {
             _model.value = UiModel.Loading
-            handleMoviesResponse(apiRepo.getPopularMovies())
+            getPopularMovieListUseCase.execute(::handleMoviesResponse, ::handleErrorResponse)
         }
     }
 
     fun onSearchMovies(query: String) {
         launch {
             _model.value = UiModel.Loading
-            handleMoviesResponse(apiRepo.searchMovies(query))
+            getSearchMovieListUseCase.execute(::handleMoviesResponse, ::handleErrorResponse, query)
         }
     }
 
-    private fun handleMoviesResponse(dataState: DataState<List<Movie>>) {
-        when (dataState) {
-            is DataState.Success -> { _model.value = UiModel.Content(dataState.data) }
-            is DataState.Error -> {}
-        }
+    private fun handleMoviesResponse(movies: List<Movie>) {
+        _model.value = UiModel.Content(movies)
+    }
+
+    private fun handleErrorResponse(throwable: Throwable) {
+        //TODO
     }
 }
