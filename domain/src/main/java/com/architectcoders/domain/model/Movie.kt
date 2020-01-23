@@ -1,9 +1,5 @@
-package com.architectcoders
+package com.architectcoders.domain.model
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-@Parcelize
 data class Movie(
     val id: Int,
     val title: String,
@@ -16,4 +12,4 @@ data class Movie(
     val popularity: Double,
     val voteAverage: Double,
     val favorite: Boolean
-) : Parcelable
+)

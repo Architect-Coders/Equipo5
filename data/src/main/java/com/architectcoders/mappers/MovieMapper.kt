@@ -1,22 +1,23 @@
 package com.architectcoders.mappers
 
-import com.architectcoders.Movie
+import com.architectcoders.domain.model.Movie
 import com.architectcoders.source.local.MovieDb as RoomMovie
 import com.architectcoders.source.remote.MovieDto as ServerMovie
 
-fun RoomMovie.toDomainMovie(): Movie = Movie(
-    id,
-    title,
-    overview,
-    releaseDate,
-    posterPath,
-    backdropPath,
-    originalLanguage,
-    originalTitle,
-    popularity,
-    voteAverage,
-    favorite
-)
+fun RoomMovie.toDomainMovie(): Movie =
+    Movie(
+        id,
+        title,
+        overview,
+        releaseDate,
+        posterPath,
+        backdropPath,
+        originalLanguage,
+        originalTitle,
+        popularity,
+        voteAverage,
+        favorite
+    )
 
 val mapDomainMovieToDb: (Movie) -> RoomMovie = { movie ->
     RoomMovie(

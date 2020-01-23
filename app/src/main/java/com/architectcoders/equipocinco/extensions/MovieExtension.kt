@@ -1,6 +1,6 @@
 package com.architectcoders.equipocinco.extensions
 
-import com.architectcoders.Movie
+import com.architectcoders.domain.model.Movie
 import com.architectcoders.generic.framework.extension.EMPTY
 import java.math.RoundingMode
 import java.text.DecimalFormat
