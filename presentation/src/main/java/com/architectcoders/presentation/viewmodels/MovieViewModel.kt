@@ -1,13 +1,17 @@
 package com.architectcoders.presentation.viewmodels
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.architectcoders.data.ApiRepo
-import com.architectcoders.data.Movie
+import androidx.lifecycle.*
+import com.architectcoders.domain.model.Movie
+import com.gabriel.usecases.GetPopularMoviesUseCase
+import com.gabriel.usecases.GetSearchMoviesUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
-class MovieViewModel(private val apiRepo: ApiRepo, uiDispatcher: CoroutineDispatcher) :
+class MovieViewModel(
+    private val getPopularMovieListUseCase: GetPopularMoviesUseCase,
+    private val getSearchMovieListUseCase: GetSearchMoviesUseCase,
+    uiDispatcher: CoroutineDispatcher
+) :
     BaseViewModel(uiDispatcher) {
 
     private val _model = MutableLiveData<UiModel>()
@@ -30,14 +34,22 @@ class MovieViewModel(private val apiRepo: ApiRepo, uiDispatcher: CoroutineDispat
     fun onRequestMovieList() {
         launch {
             _model.value = UiModel.Loading
-            _model.value = UiModel.Content(apiRepo.getPopularMovies().results)
+            getPopularMovieListUseCase.execute(::handleMoviesResponse, ::handleErrorResponse)
         }
     }
 
     fun onSearchMovies(query: String) {
         launch {
             _model.value = UiModel.Loading
-            _model.value = UiModel.Content(apiRepo.searchMoviesAsync(query).results)
+            getSearchMovieListUseCase.execute(::handleMoviesResponse, ::handleErrorResponse, query)
         }
+    }
+
+    private fun handleMoviesResponse(movies: List<Movie>) {
+        _model.value = UiModel.Content(movies)
+    }
+
+    private fun handleErrorResponse(throwable: Throwable) {
+        //TODO
     }
 }

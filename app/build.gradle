@@ -15,6 +15,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
         resValue "string", "movie_db_api_key", MOVIE_DB_API_KEY
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
     }
@@ -35,6 +36,7 @@ android {
 
 dependencies {
     implementation project(':generic')
+    implementation project(':usecases')
     implementation project(':domain')
     implementation project(':presentation')
     implementation project(':data')
@@ -51,6 +53,7 @@ dependencies {
     implementation coroutinesDependencies.values()
     implementation coroutinesAdapterDependencies.values()
     implementation navigationDepdendencies.values()
+    implementation dexterDependencies.values()
 }
 
 androidAnalyzer {

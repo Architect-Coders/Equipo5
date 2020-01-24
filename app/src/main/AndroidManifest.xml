@@ -3,6 +3,8 @@
     package="com.architectcoders.equipocinco">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name=".MovieApplication"
@@ -16,7 +18,7 @@
             android:name=".ui.MainActivity"
             android:theme="@style/AppTheme.Splash"
             >
-            <nav-graph android:value="@navigation/nav_graph" />
+            <nav-graph android:value="@navigation/bottom_nav_graph" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

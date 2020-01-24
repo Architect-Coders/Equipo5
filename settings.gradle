@@ -1,2 +1,2 @@
-include ':app', ':presentation', ':domain', ':data', ':generic'
+include ':app', ':presentation', ':domain', ':data', ':generic', ':usecases'
 rootProject.name='equipocinco'

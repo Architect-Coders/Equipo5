@@ -1,5 +1,6 @@
 package com.architectcoders.equipocinco.ui
 
+import android.Manifest
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.architectcoders.data.Movie
+import com.architectcoders.domain.model.Movie
 import com.architectcoders.equipocinco.R
+import com.architectcoders.equipocinco.common.PermissionRequester
 import com.architectcoders.equipocinco.framework.SearchManager
 import com.architectcoders.generic.framework.extension.isFilled
 import com.architectcoders.generic.framework.extension.view.setVisibleOrGone
@@ -24,6 +26,7 @@ import kotlinx.android.synthetic.main.search.*
 class MoviesFragment : Fragment() {
 
     private lateinit var navController: NavController
+    private lateinit var coarsePermissionRequester: PermissionRequester
 
     private val viewModel by lazy {
         ViewModelProvider(
@@ -45,13 +48,20 @@ class MoviesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = view.findNavController()
-        viewModel.model.observe(this, Observer(::updateUI))
+
+        coarsePermissionRequester =
+            PermissionRequester(activity, Manifest.permission.ACCESS_COARSE_LOCATION)
+
+        coarsePermissionRequester.request {
+            viewModel.model.observe(viewLifecycleOwner, Observer(::updateUI))
+        }
 
         initClSearch()
     }
 
     private fun updateUI(model: MovieViewModel.UiModel) {
         when (model) {
+            is MovieViewModel.UiModel.Loading -> pb.show()
             is MovieViewModel.UiModel.RequestMovies -> viewModel.onRequestMovieList()
             is MovieViewModel.UiModel.Content -> updateData(model.movies)
         }
@@ -67,7 +77,7 @@ class MoviesFragment : Fragment() {
             adapter = MovieAdapter(items.toMutableList()) {
                 navController.navigate(
                     R.id.action_moviesFragment_to_detailMovieFragment,
-                    bundleOf(DetailMovieFragment.MOVIE_ID_KEY to it)
+                    bundleOf(DetailMovieFragment.MOVIE_ID_KEY to it.id)
                 )
             }
             rv.adapter = adapter

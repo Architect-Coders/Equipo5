@@ -2,11 +2,11 @@ package com.architectcoders.equipocinco.ui
 
 import android.view.View
 import android.view.ViewGroup
-import com.architectcoders.data.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.generic.framework.extension.view.inflate
 import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.generic.ui.view.adapter.BaseAdapter
+import com.architectcoders.domain.model.Movie
 import kotlinx.android.synthetic.main.item_movie.view.*
 
 class MovieAdapter(

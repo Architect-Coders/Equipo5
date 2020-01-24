@@ -34,16 +34,72 @@
             tools:text="Movie Title" />
 
         <TextView
+            android:id="@+id/tvOriginalTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/gray"
+            app:layout_constraintBottom_toTopOf="@+id/tvRateNumber"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:text="Original Title" />
+
+        <TextView
+            android:id="@+id/tvRateNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/gold"
+            app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvOriginalTitle"
+            tools:text="4.8" />
+
+        <ImageView
+            android:id="@+id/ivRateAverage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRateNumber"
+            app:layout_constraintStart_toEndOf="@+id/tvRateNumber"
+            app:layout_constraintTop_toTopOf="@+id/tvRateNumber"
+            app:srcCompat="@drawable/ic_star"
+            tools:ignore="ContentDescription" />
+
+        <TextView
             android:id="@+id/tvDescription"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_description_text"
-            android:layout_marginEnd="@dimen/margin_description_text"
+            android:layout_marginTop="@dimen/margin_detail_movie_data"
+            android:layout_marginEnd="@dimen/margin_detail_movie_data"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/ivMoviePoster"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/tvTitle"
-            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvRateNumber"
             tools:text="@string/loren_ipsum" />
+
+        <TextView
+            android:id="@+id/tvReleaseDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/lower_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/ivRateAverage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toEndOf="@+id/ivRateAverage"
+            app:layout_constraintTop_toTopOf="@+id/ivRateAverage"
+            tools:text="Released: 10/02/2009" />
+
+        <TextView
+            android:id="@+id/tvPopularity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/lower_text_size"
+            app:layout_constraintBottom_toBottomOf="@+id/tvOriginalTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvOriginalTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+            tools:text="Popularity: 203.902" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
