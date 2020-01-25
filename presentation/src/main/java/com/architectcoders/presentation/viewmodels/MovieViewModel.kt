@@ -23,15 +23,15 @@ class MovieViewModel(
 
     sealed class UiModel {
         object Loading : UiModel()
-        data class Content(val movies: List<Movie>) : UiModel()
         object RequestMovies : UiModel()
+        data class Content(val movies: List<Movie>) : UiModel()
     }
 
     private fun refresh() {
         _model.value = UiModel.RequestMovies
     }
 
-    fun onRequestMovieList() {
+    fun onRequestPopularMovieList() {
         launch {
             _model.value = UiModel.Loading
             getPopularMovieListUseCase.execute(::handleMoviesResponse, ::handleErrorResponse)

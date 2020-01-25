@@ -26,12 +26,12 @@ import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.progress_bar.*
 import kotlinx.android.synthetic.main.search.*
 
-class MoviesFragment : Fragment() {
+abstract class MoviesFragment : Fragment() {
 
     private lateinit var navController: NavController
     private lateinit var coarsePermissionRequester: PermissionRequester
 
-    private val viewModel by lazy {
+    protected val viewModel by lazy {
         ViewModelProvider(
             this,
             (activity as MainActivity).viewModelFactory
@@ -65,10 +65,12 @@ class MoviesFragment : Fragment() {
     private fun updateUI(model: MovieViewModel.UiModel) {
         when (model) {
             is MovieViewModel.UiModel.Loading -> pb.show()
-            is MovieViewModel.UiModel.RequestMovies -> viewModel.onRequestMovieList()
+            is MovieViewModel.UiModel.RequestMovies -> onRequestMovieList()
             is MovieViewModel.UiModel.Content -> updateData(model.movies)
         }
     }
+
+    abstract fun onRequestMovieList()
 
     private fun updateData(movies: List<Movie>) {
         initAdapter(movies)
