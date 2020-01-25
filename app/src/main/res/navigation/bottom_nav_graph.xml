@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottom_nav_graph"
-    app:startDestination="@+id/moviesFragment">
+    app:startDestination="@+id/popularMoviesFragment">
 
     <fragment
-        android:id="@+id/moviesFragment"
+        android:id="@+id/popularMoviesFragment"
         android:name="com.architectcoders.equipocinco.ui.fragment.master.child.PopularMoviesFragment"
         android:label="Movies Fragment">
 
@@ -24,12 +24,6 @@
     </fragment>
 
     <fragment
-        android:id="@+id/detailMovieFragment"
-        android:name="com.architectcoders.equipocinco.ui.fragment.detail.DetailMovieFragment"
-        android:label="fragment_detail_mobie"
-        tools:layout="@layout/fragment_detail_movie" />
-
-    <fragment
         android:id="@+id/topRatedMoviesFragment"
         android:name="com.architectcoders.equipocinco.ui.fragment.master.child.TopRatedMoviesFragment"
         android:label="fragment_toprated_movies"
@@ -44,4 +38,10 @@
         android:name="com.architectcoders.equipocinco.ui.fragment.master.child.FavouriteMoviesFragment"
         android:label="fragment_favourite_movies"
         tools:layout="@layout/fragment_movies" />
+
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.architectcoders.equipocinco.ui.fragment.detail.DetailMovieFragment"
+        android:label="fragment_detail_mobie"
+        tools:layout="@layout/fragment_detail_movie" />
 </navigation>

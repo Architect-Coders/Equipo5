@@ -1,10 +1,5 @@
 package com.architectcoders.equipocinco.ui.fragment.master.child
 
-import com.architectcoders.equipocinco.ui.fragment.master.MoviesFragment
+import androidx.fragment.app.Fragment
 
-class FavouriteMoviesFragment : MoviesFragment() {
-
-    override fun onRequestMovieList() {
-        viewModel.onRequestPopularMovieList()
-    }
-}
+class FavouriteMoviesFragment : Fragment()
