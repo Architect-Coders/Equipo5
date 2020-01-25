@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.ui
+package com.architectcoders.equipocinco.ui.fragment.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,7 @@ import com.architectcoders.equipocinco.extensions.getOriginalTitle
 import com.architectcoders.equipocinco.extensions.getPopularity
 import com.architectcoders.equipocinco.extensions.getReleaseDateFormatted
 import com.architectcoders.equipocinco.extensions.getVoteAverage
+import com.architectcoders.equipocinco.ui.activity.MainActivity
 import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
 import kotlinx.android.synthetic.main.fragment_detail_movie.*

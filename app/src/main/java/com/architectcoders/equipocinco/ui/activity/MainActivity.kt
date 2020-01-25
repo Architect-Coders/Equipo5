@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.ui
+package com.architectcoders.equipocinco.ui.activity
 
 import android.os.Bundle
 import androidx.navigation.Navigation

@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.ui
+package com.architectcoders.equipocinco.ui.fragment.master
 
 import android.Manifest
 import android.os.Bundle
@@ -16,6 +16,9 @@ import com.architectcoders.domain.model.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.common.PermissionRequester
 import com.architectcoders.equipocinco.framework.SearchManager
+import com.architectcoders.equipocinco.ui.adapter.MovieAdapter
+import com.architectcoders.equipocinco.ui.activity.MainActivity
+import com.architectcoders.equipocinco.ui.fragment.detail.DetailMovieFragment
 import com.architectcoders.generic.framework.extension.isFilled
 import com.architectcoders.generic.framework.extension.view.setVisibleOrGone
 import com.architectcoders.presentation.viewmodels.MovieViewModel
@@ -74,12 +77,13 @@ class MoviesFragment : Fragment() {
     private fun initAdapter(items: List<Movie>) {
         rv?.let {
             rv.layoutManager = GridLayoutManager(activity, 3)
-            adapter = MovieAdapter(items.toMutableList()) {
-                navController.navigate(
-                    R.id.action_moviesFragment_to_detailMovieFragment,
-                    bundleOf(DetailMovieFragment.MOVIE_ID_KEY to it.id)
-                )
-            }
+            adapter =
+                MovieAdapter(items.toMutableList()) {
+                    navController.navigate(
+                        R.id.action_moviesFragment_to_detailMovieFragment,
+                        bundleOf(DetailMovieFragment.MOVIE_ID_KEY to it.id)
+                    )
+                }
             rv.adapter = adapter
             pb.hide()
         }

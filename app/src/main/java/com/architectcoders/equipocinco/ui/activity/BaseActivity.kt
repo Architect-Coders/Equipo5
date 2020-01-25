@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.ui
+package com.architectcoders.equipocinco.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import com.architectcoders.equipocinco.MovieApplication
