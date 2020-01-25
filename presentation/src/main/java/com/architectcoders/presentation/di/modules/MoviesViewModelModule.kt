@@ -6,6 +6,7 @@ import com.architectcoders.presentation.viewmodels.MovieViewModel
 import com.gabriel.usecases.GetMovieUseCase
 import com.gabriel.usecases.GetPopularMoviesUseCase
 import com.gabriel.usecases.GetSearchMoviesUseCase
+import com.gabriel.usecases.GetTopRatedMoviesUseCase
 import dagger.MapKey
 import dagger.Module
 import dagger.Provides
@@ -37,9 +38,15 @@ class MoviesViewModelModule {
     @ViewModelKey(MovieViewModel::class)
     fun movieViewModel(
         getPopularMoviesUseCase: GetPopularMoviesUseCase,
+        getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
         getSearchMoviesUseCase: GetSearchMoviesUseCase
     ): ViewModel {
-        return MovieViewModel(getPopularMoviesUseCase, getSearchMoviesUseCase, Dispatchers.Main)
+        return MovieViewModel(
+            getPopularMoviesUseCase,
+            getTopRatedMoviesUseCase,
+            getSearchMoviesUseCase,
+            Dispatchers.Main
+        )
     }
 
     @Provides

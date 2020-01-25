@@ -65,12 +65,12 @@ abstract class MoviesFragment : Fragment() {
     private fun updateUI(model: MovieViewModel.UiModel) {
         when (model) {
             is MovieViewModel.UiModel.Loading -> pb.show()
-            is MovieViewModel.UiModel.RequestMovies -> onRequestMovieList()
+            is MovieViewModel.UiModel.RequestMovies -> onRequestMovies()
             is MovieViewModel.UiModel.Content -> updateData(model.movies)
         }
     }
 
-    abstract fun onRequestMovieList()
+    abstract fun onRequestMovies()
 
     private fun updateData(movies: List<Movie>) {
         initAdapter(movies)

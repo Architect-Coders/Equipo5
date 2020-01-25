@@ -17,6 +17,12 @@ interface ApiService {
         @Query("region") region: String
     ): Deferred<MovieDbResult>
 
+    @GET("movie/top_rated")
+    fun getTopRatedMoviesAsync(
+        @Query("api_key") apiKey: String = BuildConfig.movie_db_api_key,
+        @Query("region") region: String
+    ): Deferred<MovieDbResult>
+
     @GET("search/movie")
     fun searchMoviesAsync(
         @Query(QUERY) query: String,

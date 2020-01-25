@@ -14,6 +14,7 @@ import com.architectcoders.source.remote.MovieListRemoteDataSource
 import com.gabriel.usecases.GetMovieUseCase
 import com.gabriel.usecases.GetPopularMoviesUseCase
 import com.gabriel.usecases.GetSearchMoviesUseCase
+import com.gabriel.usecases.GetTopRatedMoviesUseCase
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -57,6 +58,11 @@ class MoviesModule(private val context: Activity) {
     @Provides
     fun getPopularMoviesUseCase(moviesRepository: ApiRepo): GetPopularMoviesUseCase {
         return GetPopularMoviesUseCase(moviesRepository)
+    }
+
+    @Provides
+    fun getTopRatedMoviesUseCase(moviesRepository: ApiRepo): GetTopRatedMoviesUseCase {
+        return GetTopRatedMoviesUseCase(moviesRepository)
     }
 
     @Provides
