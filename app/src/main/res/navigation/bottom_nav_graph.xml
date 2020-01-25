@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottom_nav_graph"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_nav_graph"
     app:startDestination="@+id/moviesFragment">
 
     <fragment
@@ -33,17 +33,15 @@
         android:id="@+id/topRatedMoviesFragment"
         android:name="com.architectcoders.equipocinco.ui.fragment.master.child.TopRatedMoviesFragment"
         android:label="fragment_toprated_movies"
-        tools:layout="@layout/fragment_movies" >
+        tools:layout="@layout/fragment_movies">
         <action
             android:id="@+id/action_topRatedMoviesFragment_to_favouriteMoviesFragment"
             app:destination="@id/favouriteMoviesFragment" />
     </fragment>
 
-
     <fragment
         android:id="@+id/favouriteMoviesFragment"
-        android:name="com.architectcoders.equipocinco.ui.fragment.master.child.TopRatedMoviesFragment"
+        android:name="com.architectcoders.equipocinco.ui.fragment.master.child.FavouriteMoviesFragment"
         android:label="fragment_favourite_movies"
         tools:layout="@layout/fragment_movies" />
-
 </navigation>
