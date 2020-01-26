@@ -4,7 +4,5 @@ import com.architectcoders.equipocinco.ui.fragment.master.MoviesFragment
 
 class PopularMoviesFragment : MoviesFragment() {
 
-    override fun onRequestMovies() {
-        viewModel.onRequestPopularMovies()
-    }
+    override fun onRequestMovies() = viewModel.onRequestPopularMovies()
 }

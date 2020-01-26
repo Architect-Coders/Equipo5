@@ -16,8 +16,8 @@ import com.architectcoders.domain.model.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.common.PermissionRequester
 import com.architectcoders.equipocinco.framework.SearchManager
-import com.architectcoders.equipocinco.ui.adapter.MovieAdapter
 import com.architectcoders.equipocinco.ui.activity.MainActivity
+import com.architectcoders.equipocinco.ui.adapter.MovieAdapter
 import com.architectcoders.equipocinco.ui.fragment.detail.DetailMovieFragment
 import com.architectcoders.generic.framework.extension.isFilled
 import com.architectcoders.generic.framework.extension.view.setVisibleOrGone
@@ -32,10 +32,12 @@ abstract class MoviesFragment : Fragment() {
     private lateinit var coarsePermissionRequester: PermissionRequester
 
     protected val viewModel by lazy {
-        ViewModelProvider(
-            this,
-            (activity as MainActivity).viewModelFactory
-        ).get(MovieViewModel::class.java)
+        activity?.run {
+            ViewModelProvider(
+                this,
+                (activity as MainActivity).viewModelFactory
+            ).get(MovieViewModel::class.java)
+        } ?: throw Exception("Invalid Activity")
     }
 
     private var adapter: MovieAdapter? = null
