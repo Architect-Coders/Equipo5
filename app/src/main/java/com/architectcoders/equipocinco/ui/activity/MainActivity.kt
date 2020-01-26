@@ -11,9 +11,6 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProviderFactory
-
     private lateinit var activity: MainActivity
 
     override fun onCreate(savedInstanceState: Bundle?) {

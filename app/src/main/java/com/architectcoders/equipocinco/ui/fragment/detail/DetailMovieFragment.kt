@@ -13,12 +13,15 @@ import com.architectcoders.equipocinco.extensions.getOriginalTitle
 import com.architectcoders.equipocinco.extensions.getPopularity
 import com.architectcoders.equipocinco.extensions.getReleaseDateFormatted
 import com.architectcoders.equipocinco.extensions.getVoteAverage
+import com.architectcoders.equipocinco.ui.activity.BaseFragment
 import com.architectcoders.equipocinco.ui.activity.MainActivity
 import com.architectcoders.generic.framework.extension.view.loadUrl
+import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
+import javax.inject.Inject
 
-class DetailMovieFragment : Fragment() {
+class DetailMovieFragment : BaseFragment() {
 
     companion object {
         private const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/original/"
@@ -26,10 +29,12 @@ class DetailMovieFragment : Fragment() {
 
     }
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProviderFactory
     private val viewModel by lazy {
         ViewModelProvider(
             this,
-            (activity as MainActivity).viewModelFactory
+            viewModelFactory
         ).get(DetailMovieViewModel::class.java)
     }
 
@@ -39,12 +44,17 @@ class DetailMovieFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         arguments?.let { bundle ->
-            bundle.getInt(MOVIE_ID_KEY)?.let {
+            bundle.getInt(MOVIE_ID_KEY).let {
                 viewModel.onMovieDetailLoading(it)
             }
             viewModel.model.observe(this, Observer(::refresh))
         }
         return inflater.inflate(R.layout.fragment_detail_movie, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        getPresentationComponent().inject(this)
     }
 
     private fun refresh(model: DetailMovieViewModel.UiModel) {
@@ -64,5 +74,4 @@ class DetailMovieFragment : Fragment() {
             tvDescription.text = overview
         }
     }
-
 }

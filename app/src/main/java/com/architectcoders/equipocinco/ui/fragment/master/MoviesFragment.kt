@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -16,28 +15,30 @@ import com.architectcoders.domain.model.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.common.PermissionRequester
 import com.architectcoders.equipocinco.framework.SearchManager
-import com.architectcoders.equipocinco.ui.activity.MainActivity
+import com.architectcoders.equipocinco.ui.activity.BaseFragment
 import com.architectcoders.equipocinco.ui.adapter.MovieAdapter
 import com.architectcoders.equipocinco.ui.fragment.detail.DetailMovieFragment
 import com.architectcoders.generic.framework.extension.isFilled
 import com.architectcoders.generic.framework.extension.view.setVisibleOrGone
+import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
 import com.architectcoders.presentation.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.progress_bar.*
 import kotlinx.android.synthetic.main.search.*
+import javax.inject.Inject
 
-abstract class MoviesFragment : Fragment() {
+abstract class MoviesFragment : BaseFragment() {
 
     private lateinit var navController: NavController
     private lateinit var coarsePermissionRequester: PermissionRequester
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelProviderFactory
     protected val viewModel by lazy {
-        activity?.run {
-            ViewModelProvider(
-                this,
-                (activity as MainActivity).viewModelFactory
-            ).get(MovieViewModel::class.java)
-        } ?: throw Exception("Invalid Activity")
+        ViewModelProvider(
+            this,
+            viewModelFactory
+        ).get(MovieViewModel::class.java)
     }
 
     private var adapter: MovieAdapter? = null
@@ -52,6 +53,7 @@ abstract class MoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getPresentationComponent().inject(this)
         navController = view.findNavController()
 
         coarsePermissionRequester =
