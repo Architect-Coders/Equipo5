@@ -54,6 +54,8 @@ dependencies {
     implementation coroutinesAdapterDependencies.values()
     implementation navigationDepdendencies.values()
     implementation dexterDependencies.values()
+    implementation androidLifecycle.values()
+    implementation roomDependencies.values()
 }
 
 androidAnalyzer {

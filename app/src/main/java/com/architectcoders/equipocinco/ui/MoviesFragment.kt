@@ -8,13 +8,16 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.architectcoders.domain.model.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.common.PermissionRequester
+import com.architectcoders.equipocinco.di.modules.PopularMoviesComponent
+import com.architectcoders.equipocinco.di.modules.PopularMoviesModule
+import com.architectcoders.equipocinco.extensions.app
+import com.architectcoders.equipocinco.extensions.getViewModel
 import com.architectcoders.equipocinco.framework.SearchManager
 import com.architectcoders.generic.framework.extension.isFilled
 import com.architectcoders.generic.framework.extension.view.setVisibleOrGone
@@ -28,12 +31,10 @@ class MoviesFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var coarsePermissionRequester: PermissionRequester
 
-    private val viewModel by lazy {
-        ViewModelProvider(
-            this,
-            (activity as MainActivity).viewModelFactory
-        ).get(MovieViewModel::class.java)
-    }
+    private lateinit var component: PopularMoviesComponent
+
+    private val viewModel: MovieViewModel by lazy { getViewModel { component.movieViewModel } }
+
 
     private var adapter: MovieAdapter? = null
 
@@ -47,6 +48,12 @@ class MoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        activity?.run {
+            component = app.applicationComponent.plus(PopularMoviesModule())
+        } ?: throw Exception("Invalid Activity")
+
+
         navController = view.findNavController()
 
         coarsePermissionRequester =

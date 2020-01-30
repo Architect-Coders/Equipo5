@@ -1,18 +1,14 @@
 package com.architectcoders.equipocinco.ui
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.architectcoders.equipocinco.R
-import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProviderFactory
+class MainActivity : AppCompatActivity() {
 
     private lateinit var activity: MainActivity
 
@@ -23,7 +19,6 @@ class MainActivity : BaseActivity() {
         activity = this@MainActivity
         setUpNavigation()
 
-        getPresentationComponent().inject(this)
     }
 
 
@@ -39,3 +34,5 @@ class MainActivity : BaseActivity() {
     override fun onSupportNavigateUp() =
         Navigation.findNavController(this, R.id.navHostFragment).navigateUp()
 }
+
+

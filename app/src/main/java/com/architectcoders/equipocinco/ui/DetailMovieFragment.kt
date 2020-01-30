@@ -9,12 +9,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.architectcoders.domain.model.Movie
 import com.architectcoders.equipocinco.R
-import com.architectcoders.equipocinco.extensions.getOriginalTitle
-import com.architectcoders.equipocinco.extensions.getPopularity
-import com.architectcoders.equipocinco.extensions.getReleaseDateFormatted
-import com.architectcoders.equipocinco.extensions.getVoteAverage
+import com.architectcoders.equipocinco.di.modules.DetailMovieComponent
+import com.architectcoders.equipocinco.di.modules.DetailMovieModule
+import com.architectcoders.equipocinco.di.modules.PopularMoviesComponent
+import com.architectcoders.equipocinco.di.modules.PopularMoviesModule
+import com.architectcoders.equipocinco.extensions.*
 import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
+import com.architectcoders.presentation.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
 
 class DetailMovieFragment : Fragment() {
@@ -25,18 +27,19 @@ class DetailMovieFragment : Fragment() {
 
     }
 
-    private val viewModel by lazy {
-        ViewModelProvider(
-            this,
-            (activity as MainActivity).viewModelFactory
-        ).get(DetailMovieViewModel::class.java)
-    }
+    private lateinit var component: DetailMovieComponent
+    private val viewModel: DetailMovieViewModel by lazy { getViewModel { component.detailViewModel } }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.run {
+            component = app.applicationComponent.plus(DetailMovieModule())
+        } ?: throw Exception("Invalid Activity")
+
         arguments?.let { bundle ->
             bundle.getInt(MOVIE_ID_KEY)?.let {
                 viewModel.onMovieDetailLoading(it)

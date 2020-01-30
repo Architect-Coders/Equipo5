@@ -1,8 +1,8 @@
-package com.architectcoders.mappers
+package com.architectcoders.equipocinco.data.mappers
 
 import com.architectcoders.domain.model.Movie
-import com.architectcoders.source.local.MovieDb as RoomMovie
-import com.architectcoders.source.remote.MovieDto as ServerMovie
+import com.architectcoders.equipocinco.data.source.local.MovieDb as RoomMovie
+import com.architectcoders.equipocinco.data.source.remote.MovieDto as ServerMovie
 
 fun RoomMovie.toDomainMovie(): Movie =
     Movie(

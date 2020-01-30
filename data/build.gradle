@@ -1,52 +1,7 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'kotlin-kapt'
-
-android {
-
-    compileSdkVersion versionNumbers.compileSdkVersion
-    buildToolsVersion versionNumbers.buildToolsVersion
-    defaultConfig {
-        minSdkVersion versionNumbers.minSdkVersion
-        targetSdkVersion versionNumbers.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "movie_db_api_key", MOVIE_DB_API_KEY
-    }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-    // work-runtime-ktx 2.1.0 and above now requires Java 8
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-}
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
 dependencies {
-    implementation project(':generic')
-    implementation project(':domain')
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation jetBrainsDependencies.values()
-    implementation androidXDependencies.values()
-    testImplementation testDependencies.values()
-    implementation retrofitDependencies.values()
-    implementation loggingInterceptorDependencies.values()
-    implementation coroutinesDependencies.values()
-    implementation coroutinesAdapterDependencies.values()
-    androidTestImplementation androidTestDependencies.values()
-    implementation roomDependencies.values()
-
-    implementation androidDependenciesFramework.values()
-    kapt androidKaptLibs.values()
+    implementation project(":domain")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
