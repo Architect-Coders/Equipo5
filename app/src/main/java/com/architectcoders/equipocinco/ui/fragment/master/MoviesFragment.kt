@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.architectcoders.domain.model.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.common.PermissionRequester
-import com.architectcoders.equipocinco.di.modules.PopularMoviesComponent
-import com.architectcoders.equipocinco.di.modules.PopularMoviesModule
+import com.architectcoders.equipocinco.di.modules.MoviesComponent
+import com.architectcoders.equipocinco.di.modules.MoviesModule
 import com.architectcoders.equipocinco.extensions.app
 import com.architectcoders.equipocinco.extensions.getViewModel
 import com.architectcoders.equipocinco.framework.SearchManager
@@ -33,7 +33,7 @@ abstract class MoviesFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var coarsePermissionRequester: PermissionRequester
 
-    private lateinit var component: PopularMoviesComponent
+    private lateinit var component: MoviesComponent
 
     protected val viewModel: MovieViewModel by lazy { getViewModel { component.movieViewModel } }
 
@@ -52,7 +52,7 @@ abstract class MoviesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         activity?.run {
-            component = app.applicationComponent.plus(PopularMoviesModule())
+            component = app.applicationComponent.plus(MoviesModule())
         } ?: throw Exception("Invalid Activity")
 
 

@@ -12,7 +12,7 @@ import kotlinx.coroutines.Dispatchers
 
 
 @Module
-class PopularMoviesModule {
+class MoviesModule {
 
     @Provides
     fun getSearchMoviesUseCase(moviesRepository: MoviesRepository) =
@@ -41,7 +41,7 @@ class PopularMoviesModule {
     )
 }
 
-@Subcomponent(modules = [(PopularMoviesModule::class)])
-interface PopularMoviesComponent {
+@Subcomponent(modules = [(MoviesModule::class)])
+interface MoviesComponent {
     val movieViewModel: MovieViewModel
 }

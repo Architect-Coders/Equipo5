@@ -12,7 +12,7 @@ import javax.inject.Singleton
 @Component(modules = [ApplicationModule::class, DataModule::class])
 interface ApplicationComponent {
 
-    fun plus(module: PopularMoviesModule): PopularMoviesComponent
+    fun plus(module: MoviesModule): MoviesComponent
     fun plus(module: DetailMovieModule): DetailMovieComponent
 
     @Component.Factory

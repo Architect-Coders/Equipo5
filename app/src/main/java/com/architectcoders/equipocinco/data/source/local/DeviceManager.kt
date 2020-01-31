@@ -14,7 +14,6 @@ class DeviceManager(private val applicationContext: Context): DeviceSource {
     }
 }
 
-
 fun Context.isConnectedToNetwork(): Boolean {
     val connectivityManager =
         this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
