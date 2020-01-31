@@ -9,10 +9,13 @@ import androidx.room.Query
 interface MovieDao {
 
     @Query("SELECT * FROM movies ORDER BY popularity DESC LIMIT 20")
-    fun getMovieList(): List<MovieDb>
+    fun getPopularMovies(): List<MovieDb>
+
+    @Query("SELECT * FROM movies ORDER BY voteAverage DESC LIMIT 20")
+    fun getTopRatedMovies(): List<MovieDb>
 
     @Query("SELECT * FROM movies WHERE title LIKE :query")
-    fun getMovieList(query: String): List<MovieDb>
+    fun searchMovies(query: String): List<MovieDb>
 
     @Query("SELECT * FROM movies WHERE id LIKE :id")
     fun getMovie(id: Int): MovieDb
@@ -20,4 +23,3 @@ interface MovieDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(movies: List<MovieDb>)
 }
-

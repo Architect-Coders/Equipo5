@@ -17,6 +17,10 @@ class MovieListRemoteDataSource constructor(private val service: ApiService) : B
         getResult(::mapResultToDomainModel) { service.searchMoviesAsync(query) }
 
 
+    override suspend fun getTopRatedMovies(locationCode: String): Result<List<Movie>> =
+        getResult(::mapResultToDomainModel) { service.getTopRatedMoviesAsync(region = locationCode) }
+
+
     private fun mapResultToDomainModel(movieDbResult: MovieDbResult) =
         movieDbResult.results.map(mapServerMovieToDomain)
 

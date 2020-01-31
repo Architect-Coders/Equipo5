@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.ui.detail
+package com.architectcoders.equipocinco.ui.fragment.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+
 import com.architectcoders.domain.model.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.di.modules.DetailMovieComponent
@@ -14,6 +15,7 @@ import com.architectcoders.equipocinco.extensions.*
 import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
+
 
 class DetailMovieFragment : Fragment() {
 
@@ -31,18 +33,22 @@ class DetailMovieFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View? = inflater.inflate(R.layout.fragment_detail_movie, container, false)
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         activity?.run {
             component = app.applicationComponent.plus(DetailMovieModule())
         } ?: throw Exception("Invalid Activity")
 
         arguments?.let { bundle ->
-            bundle.getInt(MOVIE_ID_KEY)?.let {
+            bundle.getInt(MOVIE_ID_KEY).let {
                 viewModel.onMovieDetailLoading(it)
             }
             viewModel.model.observe(this, Observer(::refresh))
         }
-        return inflater.inflate(R.layout.fragment_detail_movie, container, false)
+
     }
 
     private fun refresh(model: DetailMovieViewModel.UiModel) {
@@ -62,5 +68,4 @@ class DetailMovieFragment : Fragment() {
             tvDescription.text = overview
         }
     }
-
 }

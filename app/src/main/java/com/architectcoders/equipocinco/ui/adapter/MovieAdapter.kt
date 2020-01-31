@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.ui
+package com.architectcoders.equipocinco.ui.adapter
 
 import android.view.View
 import android.view.ViewGroup

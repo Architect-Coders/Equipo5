@@ -1,11 +1,12 @@
 package com.architectcoders.equipocinco.di.modules
 
 import android.app.Application
-import com.architectcoders.equipocinco.data.repository.ApiRepo
-import com.architectcoders.equipocinco.data.source.SessionManager
+import com.architectcoders.repository.ApiRepo
 import com.architectcoders.domain.MoviesRepository
+import com.architectcoders.equipocinco.data.source.local.DeviceManager
 import com.architectcoders.location.LocationRepository
 import com.architectcoders.location.PermissionChecker
+import com.architectcoders.source.local.DeviceSource
 import com.architectcoders.source.local.LocalDataSource
 import com.architectcoders.source.local.LocationDataSource
 import dagger.Module
@@ -18,8 +19,10 @@ class DataModule {
 
     @Provides
     @Singleton
-    fun getSessionManager(app: Application): SessionManager {
-        return SessionManager(app)
+    fun getSessionManager(app: Application): DeviceSource {
+        return DeviceManager(
+            app
+        )
     }
 
     @Provides
@@ -37,7 +40,7 @@ class DataModule {
     fun getApiRepository(
         moviesListRemoteDataSource: com.architectcoders.equipocinco.data.source.remote.MovieListRemoteDataSource,
         movieLocalDataSource: LocalDataSource,
-        sessionManager: SessionManager,
+        sessionManager: DeviceSource,
         locationRepository: LocationRepository
     ): MoviesRepository =
         ApiRepo(

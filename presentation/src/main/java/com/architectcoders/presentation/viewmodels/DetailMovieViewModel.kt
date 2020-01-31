@@ -7,7 +7,10 @@ import com.gabriel.usecases.GetMovieUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
-class DetailMovieViewModel(private val getMovieUseCase: GetMovieUseCase,uiDispatcher: CoroutineDispatcher) :
+class DetailMovieViewModel(
+    private val getMovieUseCase: GetMovieUseCase,
+    uiDispatcher: CoroutineDispatcher
+) :
     BaseViewModel(uiDispatcher) {
 
     private val _model = MutableLiveData<UiModel>()
@@ -29,6 +32,6 @@ class DetailMovieViewModel(private val getMovieUseCase: GetMovieUseCase,uiDispat
     }
 
     private fun handleSuccessMovie(movie: Movie) {
-        _model.value = UiModel.Content(movie)    }
-
+        _model.value = UiModel.Content(movie)
+    }
 }

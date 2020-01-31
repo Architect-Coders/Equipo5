@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.ui.popular
+package com.architectcoders.equipocinco.ui.fragment.master
 
 import android.Manifest
 import android.os.Bundle
@@ -19,8 +19,8 @@ import com.architectcoders.equipocinco.di.modules.PopularMoviesModule
 import com.architectcoders.equipocinco.extensions.app
 import com.architectcoders.equipocinco.extensions.getViewModel
 import com.architectcoders.equipocinco.framework.SearchManager
-import com.architectcoders.equipocinco.ui.MovieAdapter
-import com.architectcoders.equipocinco.ui.detail.DetailMovieFragment
+import com.architectcoders.equipocinco.ui.adapter.MovieAdapter
+import com.architectcoders.equipocinco.ui.fragment.detail.DetailMovieFragment
 import com.architectcoders.generic.framework.extension.isFilled
 import com.architectcoders.generic.framework.extension.view.setVisibleOrGone
 import com.architectcoders.presentation.viewmodels.MovieViewModel
@@ -28,15 +28,14 @@ import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.progress_bar.*
 import kotlinx.android.synthetic.main.search.*
 
-class MoviesFragment : Fragment() {
+abstract class MoviesFragment : Fragment() {
 
     private lateinit var navController: NavController
     private lateinit var coarsePermissionRequester: PermissionRequester
 
     private lateinit var component: PopularMoviesComponent
 
-    private val viewModel: MovieViewModel by lazy { getViewModel { component.movieViewModel } }
-
+    protected val viewModel: MovieViewModel by lazy { getViewModel { component.movieViewModel } }
 
     private var adapter: MovieAdapter? = null
 
@@ -47,6 +46,7 @@ class MoviesFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_movies, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -71,10 +71,12 @@ class MoviesFragment : Fragment() {
     private fun updateUI(model: MovieViewModel.UiModel) {
         when (model) {
             is MovieViewModel.UiModel.Loading -> pb.show()
-            is MovieViewModel.UiModel.RequestMovies -> viewModel.onRequestMovieList()
+            is MovieViewModel.UiModel.RequestMovies -> onRequestMovies()
             is MovieViewModel.UiModel.Content -> updateData(model.movies)
         }
     }
+
+    abstract fun onRequestMovies()
 
     private fun updateData(movies: List<Movie>) {
         initAdapter(movies)

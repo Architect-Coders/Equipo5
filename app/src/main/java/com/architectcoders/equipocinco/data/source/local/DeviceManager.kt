@@ -1,14 +1,15 @@
 @file:JvmName("ConnectivityHelper")
 
-package com.architectcoders.equipocinco.data.source
+package com.architectcoders.equipocinco.data.source.local
 
 import android.content.Context
 import android.net.ConnectivityManager
+import com.architectcoders.source.local.DeviceSource
 
 
-class SessionManager(private val applicationContext: Context) {
+class DeviceManager(private val applicationContext: Context): DeviceSource {
 
-    fun isConnectedToTheInternet(): Boolean {
+    override fun isConnectedToTheInternet(): Boolean {
         return applicationContext.isConnectedToNetwork()
     }
 }

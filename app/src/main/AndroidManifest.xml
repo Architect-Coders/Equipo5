@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:theme="@style/AppTheme.Splash"
             >
             <nav-graph android:value="@navigation/bottom_nav_graph" />
