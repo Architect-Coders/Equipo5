@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.ui
+package com.architectcoders.equipocinco.ui.detail
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,17 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.architectcoders.domain.model.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.di.modules.DetailMovieComponent
 import com.architectcoders.equipocinco.di.modules.DetailMovieModule
-import com.architectcoders.equipocinco.di.modules.PopularMoviesComponent
-import com.architectcoders.equipocinco.di.modules.PopularMoviesModule
 import com.architectcoders.equipocinco.extensions.*
 import com.architectcoders.generic.framework.extension.view.loadUrl
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
-import com.architectcoders.presentation.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_detail_movie.*
 
 class DetailMovieFragment : Fragment() {

@@ -1,6 +1,6 @@
 package com.architectcoders.equipocinco.data.repository
 
-import com.architectcoders.data.SessionManager
+import com.architectcoders.equipocinco.data.source.SessionManager
 import com.architectcoders.data.singleSourceOfData
 import com.architectcoders.domain.MoviesRepository
 import com.architectcoders.domain.state.DataState

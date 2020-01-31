@@ -1,6 +1,6 @@
 @file:JvmName("ConnectivityHelper")
 
-package com.architectcoders.data
+package com.architectcoders.equipocinco.data.source
 
 import android.content.Context
 import android.net.ConnectivityManager

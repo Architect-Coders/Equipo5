@@ -2,7 +2,7 @@ package com.architectcoders.equipocinco.di.modules
 
 import android.app.Application
 import com.architectcoders.equipocinco.data.repository.ApiRepo
-import com.architectcoders.data.SessionManager
+import com.architectcoders.equipocinco.data.source.SessionManager
 import com.architectcoders.domain.MoviesRepository
 import com.architectcoders.location.LocationRepository
 import com.architectcoders.location.PermissionChecker

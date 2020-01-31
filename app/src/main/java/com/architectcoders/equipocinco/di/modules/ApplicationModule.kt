@@ -1,7 +1,7 @@
 package com.architectcoders.equipocinco.di.modules
 
 import android.app.Application
-import com.architectcoders.data.BuildConfig
+import com.architectcoders.equipocinco.BuildConfig
 import com.architectcoders.equipocinco.data.location.AndroidPermissionChecker
 import com.architectcoders.equipocinco.data.location.PlayServicesLocationDataSource
 import com.architectcoders.location.PermissionChecker

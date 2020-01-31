@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/moviesFragment"
-        android:name="com.architectcoders.equipocinco.ui.MoviesFragment"
+        android:name="com.architectcoders.equipocinco.ui.popular.MoviesFragment"
         android:label="Movies Fragment">
 
         <action
@@ -29,7 +29,7 @@
 
     <fragment
         android:id="@+id/detailMovieFragment"
-        android:name="com.architectcoders.equipocinco.ui.DetailMovieFragment"
+        android:name="com.architectcoders.equipocinco.ui.detail.DetailMovieFragment"
         android:label="fragment_detail_mobie"
         tools:layout="@layout/fragment_detail_movie" >
         <deepLink
@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/topRatedMoviesFragment"
-        android:name="com.architectcoders.equipocinco.ui.TopRatedMoviesFragment"
+        android:name="com.architectcoders.equipocinco.ui.toprated.TopRatedMoviesFragment"
         android:label="fragment_toprated_movies"
         tools:layout="@layout/fragment_movies" >
         <action
@@ -54,7 +54,7 @@
 
     <fragment
         android:id="@+id/favouriteMoviesFragment"
-        android:name="com.architectcoders.equipocinco.ui.TopRatedMoviesFragment"
+        android:name="com.architectcoders.equipocinco.ui.toprated.TopRatedMoviesFragment"
         android:label="fragment_favourite_movies"
         tools:layout="@layout/fragment_movies" />
 
