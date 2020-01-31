@@ -1,6 +1,5 @@
 package com.architectcoders.equipocinco.common
 
-import android.app.Activity
 import androidx.fragment.app.FragmentActivity
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.listener.PermissionDeniedResponse
@@ -26,5 +25,4 @@ class PermissionRequester(private val activity: FragmentActivity?, private val p
                 ).check()
         }
     }
-
 }

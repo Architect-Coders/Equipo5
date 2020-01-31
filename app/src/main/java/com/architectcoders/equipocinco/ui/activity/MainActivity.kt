@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.ui
+package com.architectcoders.equipocinco.ui.activity
 
 import android.os.Bundle
 import androidx.navigation.Navigation
@@ -10,9 +10,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
-
-    @Inject
-    lateinit var viewModelFactory: ViewModelProviderFactory
 
     private lateinit var activity: MainActivity
 

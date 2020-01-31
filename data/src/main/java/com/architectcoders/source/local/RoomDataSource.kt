@@ -10,15 +10,24 @@ import kotlinx.coroutines.withContext
 
 class RoomDataSource(private val movieDao: MovieDao) : LocalDataSource {
 
-    override suspend fun getPopularMovies(locationCode: String?): List<Movie> = withContext(Dispatchers.IO) {
-        movieDao.getMovieList().map { movieDb ->
-            movieDb.toDomainMovie()
+    override suspend fun getPopularMovies(locationCode: String?): List<Movie> =
+        withContext(Dispatchers.IO) {
+            movieDao.getPopularMovies().map { movieDb ->
+                movieDb.toDomainMovie()
+            }
         }
-    }
 
-    override suspend fun getPopularMoviesBySearch(query: String): List<Movie> = withContext(Dispatchers.IO) {
-            movieDao.getMovieList(query.enclosingPercentage()).map { movieDb -> movieDb.toDomainMovie() }
+    override suspend fun getTopRatedMovies(locationCode: String?): List<Movie> =
+        withContext(Dispatchers.IO) {
+            movieDao.getTopRatedMovies().map { movieDb ->
+                movieDb.toDomainMovie()
+            }
         }
+
+    override suspend fun searchMovies(query: String): List<Movie> = withContext(Dispatchers.IO) {
+        movieDao.searchMovies(query.enclosingPercentage())
+            .map { movieDb -> movieDb.toDomainMovie() }
+    }
 
     override suspend fun getMovie(id: Int): Movie = withContext(Dispatchers.IO) {
         movieDao.getMovie(id).toDomainMovie()
@@ -27,5 +36,4 @@ class RoomDataSource(private val movieDao: MovieDao) : LocalDataSource {
     override suspend fun saveMovies(movies: List<Movie>) = withContext(Dispatchers.IO) {
         movieDao.insertAll(movies.map { movie -> mapDomainMovieToDb(movie) })
     }
-
 }

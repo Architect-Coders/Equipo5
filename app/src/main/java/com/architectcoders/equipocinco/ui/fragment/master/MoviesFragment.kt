@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.ui
+package com.architectcoders.equipocinco.ui.fragment.master
 
 import android.Manifest
 import android.os.Bundle
@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
@@ -16,22 +15,29 @@ import com.architectcoders.domain.model.Movie
 import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.common.PermissionRequester
 import com.architectcoders.equipocinco.framework.SearchManager
+import com.architectcoders.equipocinco.ui.activity.BaseFragment
+import com.architectcoders.equipocinco.ui.adapter.MovieAdapter
+import com.architectcoders.equipocinco.ui.fragment.detail.DetailMovieFragment
 import com.architectcoders.generic.framework.extension.isFilled
 import com.architectcoders.generic.framework.extension.view.setVisibleOrGone
+import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
 import com.architectcoders.presentation.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.progress_bar.*
 import kotlinx.android.synthetic.main.search.*
+import javax.inject.Inject
 
-class MoviesFragment : Fragment() {
+abstract class MoviesFragment : BaseFragment() {
 
     private lateinit var navController: NavController
     private lateinit var coarsePermissionRequester: PermissionRequester
 
-    private val viewModel by lazy {
+    @Inject
+    lateinit var viewModelFactory: ViewModelProviderFactory
+    protected val viewModel by lazy {
         ViewModelProvider(
             this,
-            (activity as MainActivity).viewModelFactory
+            viewModelFactory
         ).get(MovieViewModel::class.java)
     }
 
@@ -47,6 +53,7 @@ class MoviesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getPresentationComponent().inject(this)
         navController = view.findNavController()
 
         coarsePermissionRequester =
@@ -62,10 +69,12 @@ class MoviesFragment : Fragment() {
     private fun updateUI(model: MovieViewModel.UiModel) {
         when (model) {
             is MovieViewModel.UiModel.Loading -> pb.show()
-            is MovieViewModel.UiModel.RequestMovies -> viewModel.onRequestMovieList()
+            is MovieViewModel.UiModel.RequestMovies -> onRequestMovies()
             is MovieViewModel.UiModel.Content -> updateData(model.movies)
         }
     }
+
+    abstract fun onRequestMovies()
 
     private fun updateData(movies: List<Movie>) {
         initAdapter(movies)
@@ -74,12 +83,13 @@ class MoviesFragment : Fragment() {
     private fun initAdapter(items: List<Movie>) {
         rv?.let {
             rv.layoutManager = GridLayoutManager(activity, 3)
-            adapter = MovieAdapter(items.toMutableList()) {
-                navController.navigate(
-                    R.id.action_moviesFragment_to_detailMovieFragment,
-                    bundleOf(DetailMovieFragment.MOVIE_ID_KEY to it.id)
-                )
-            }
+            adapter =
+                MovieAdapter(items.toMutableList()) {
+                    navController.navigate(
+                        R.id.action_moviesFragment_to_detailMovieFragment,
+                        bundleOf(DetailMovieFragment.MOVIE_ID_KEY to it.id)
+                    )
+                }
             rv.adapter = adapter
             pb.hide()
         }

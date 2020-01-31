@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.ui
+package com.architectcoders.equipocinco.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import com.architectcoders.equipocinco.MovieApplication
@@ -6,7 +6,7 @@ import com.architectcoders.equipocinco.di.ApplicationComponent
 import com.architectcoders.equipocinco.di.modules.MoviesModule
 import com.architectcoders.equipocinco.di.subcomponents.PresentationComponent
 
-abstract class BaseActivity : AppCompatActivity(){
+abstract class BaseActivity : AppCompatActivity() {
     private var mIsInjectorUsed: Boolean = false
 
     protected fun getPresentationComponent(): PresentationComponent {

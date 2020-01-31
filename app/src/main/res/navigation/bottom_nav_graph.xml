@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/bottom_nav_graph"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@+id/moviesFragment">
+    android:id="@+id/bottom_nav_graph"
+    app:startDestination="@+id/popularMoviesFragment">
 
     <fragment
-        android:id="@+id/moviesFragment"
-        android:name="com.architectcoders.equipocinco.ui.MoviesFragment"
+        android:id="@+id/popularMoviesFragment"
+        android:name="com.architectcoders.equipocinco.ui.fragment.master.child.PopularMoviesFragment"
         android:label="Movies Fragment">
 
         <action
@@ -28,34 +28,32 @@
     </fragment>
 
     <fragment
-        android:id="@+id/detailMovieFragment"
-        android:name="com.architectcoders.equipocinco.ui.DetailMovieFragment"
-        android:label="fragment_detail_mobie"
-        tools:layout="@layout/fragment_detail_movie" >
-        <deepLink
-            android:id="@+id/deepLink"
-            app:uri="architectcoders.com/equipo5/{DetailMovieFragment::id}" />
-        <argument
-            android:name="DetailMovieFragment::id"
-            app:argType="integer"
-            android:defaultValue="0" />
-    </fragment>
-
-    <fragment
         android:id="@+id/topRatedMoviesFragment"
-        android:name="com.architectcoders.equipocinco.ui.TopRatedMoviesFragment"
+        android:name="com.architectcoders.equipocinco.ui.fragment.master.child.TopRatedMoviesFragment"
         android:label="fragment_toprated_movies"
-        tools:layout="@layout/fragment_movies" >
+        tools:layout="@layout/fragment_movies">
         <action
             android:id="@+id/action_topRatedMoviesFragment_to_favouriteMoviesFragment"
             app:destination="@id/favouriteMoviesFragment" />
     </fragment>
 
-
     <fragment
         android:id="@+id/favouriteMoviesFragment"
-        android:name="com.architectcoders.equipocinco.ui.TopRatedMoviesFragment"
+        android:name="com.architectcoders.equipocinco.ui.fragment.master.child.FavouriteMoviesFragment"
         android:label="fragment_favourite_movies"
         tools:layout="@layout/fragment_movies" />
 
+    <fragment
+        android:id="@+id/detailMovieFragment"
+        android:name="com.architectcoders.equipocinco.ui.fragment.detail.DetailMovieFragment"
+        android:label="fragment_detail_mobie"
+        tools:layout="@layout/fragment_detail_movie">
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="architectcoders.com/equipo5/{DetailMovieFragment::id}" />
+        <argument
+            android:name="DetailMovieFragment::id"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 </navigation>

@@ -1,14 +1,17 @@
 package com.architectcoders.presentation.viewmodels
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.architectcoders.domain.model.Movie
 import com.gabriel.usecases.GetPopularMoviesUseCase
 import com.gabriel.usecases.GetSearchMoviesUseCase
+import com.gabriel.usecases.GetTopRatedMoviesUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
 class MovieViewModel(
     private val getPopularMovieListUseCase: GetPopularMoviesUseCase,
+    private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
     private val getSearchMovieListUseCase: GetSearchMoviesUseCase,
     uiDispatcher: CoroutineDispatcher
 ) :
@@ -23,18 +26,25 @@ class MovieViewModel(
 
     sealed class UiModel {
         object Loading : UiModel()
-        data class Content(val movies: List<Movie>) : UiModel()
         object RequestMovies : UiModel()
+        data class Content(val movies: List<Movie>) : UiModel()
     }
 
     private fun refresh() {
         _model.value = UiModel.RequestMovies
     }
 
-    fun onRequestMovieList() {
+    fun onRequestPopularMovies() {
         launch {
             _model.value = UiModel.Loading
             getPopularMovieListUseCase.execute(::handleMoviesResponse, ::handleErrorResponse)
+        }
+    }
+
+    fun onRequestTopRatedMovies() {
+        launch {
+            _model.value = UiModel.Loading
+            getTopRatedMoviesUseCase.execute(::handleMoviesResponse, ::handleErrorResponse)
         }
     }
 
