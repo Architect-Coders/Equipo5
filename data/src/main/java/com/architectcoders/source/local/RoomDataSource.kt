@@ -36,4 +36,11 @@ class RoomDataSource(private val movieDao: MovieDao) : LocalDataSource {
     override suspend fun saveMovies(movies: List<Movie>) = withContext(Dispatchers.IO) {
         movieDao.insertAll(movies.map { movie -> mapDomainMovieToDb(movie) })
     }
+
+    override suspend fun getFavoriteMovies(): List<Movie> =
+        withContext(Dispatchers.IO) {
+            movieDao.getFavoriteMovies()
+                .map { movieDb -> movieDb.toDomainMovie() }
+        }
+
 }

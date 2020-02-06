@@ -22,4 +22,7 @@ interface MovieDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(movies: List<MovieDb>)
+
+    @Query("SELECT * FROM movies WHERE id = 1")
+    fun getFavoriteMovies(): List<MovieDb>
 }

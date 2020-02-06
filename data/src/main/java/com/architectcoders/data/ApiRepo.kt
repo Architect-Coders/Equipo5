@@ -33,4 +33,6 @@ class ApiRepo(
         shouldFetch = { (sessionManager.isConnectedToTheInternet()) })
 
     override suspend fun getMovieById(id: Int) = DataState.Success(localDataSource.getMovie(id))
+
+    override suspend fun getFavoriteMovies() = DataState.Success(localDataSource.getFavoriteMovies())
 }

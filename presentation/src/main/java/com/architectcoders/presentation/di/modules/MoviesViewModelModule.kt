@@ -3,10 +3,7 @@ package com.architectcoders.presentation.di.modules
 import androidx.lifecycle.ViewModel
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
 import com.architectcoders.presentation.viewmodels.MovieViewModel
-import com.gabriel.usecases.GetMovieUseCase
-import com.gabriel.usecases.GetPopularMoviesUseCase
-import com.gabriel.usecases.GetSearchMoviesUseCase
-import com.gabriel.usecases.GetTopRatedMoviesUseCase
+import com.gabriel.usecases.*
 import dagger.MapKey
 import dagger.Module
 import dagger.Provides
@@ -39,12 +36,14 @@ class MoviesViewModelModule {
     fun movieViewModel(
         getPopularMoviesUseCase: GetPopularMoviesUseCase,
         getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
-        getSearchMoviesUseCase: GetSearchMoviesUseCase
-    ): ViewModel {
+        getSearchMoviesUseCase: GetSearchMoviesUseCase,
+        getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
+        ): ViewModel {
         return MovieViewModel(
             getPopularMoviesUseCase,
             getTopRatedMoviesUseCase,
             getSearchMoviesUseCase,
+            getFavoriteMoviesUseCase,
             Dispatchers.Main
         )
     }

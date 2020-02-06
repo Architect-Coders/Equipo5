@@ -3,6 +3,7 @@ package com.architectcoders.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.architectcoders.domain.model.Movie
+import com.gabriel.usecases.GetFavoriteMoviesUseCase
 import com.gabriel.usecases.GetPopularMoviesUseCase
 import com.gabriel.usecases.GetSearchMoviesUseCase
 import com.gabriel.usecases.GetTopRatedMoviesUseCase
@@ -13,6 +14,7 @@ class MovieViewModel(
     private val getPopularMovieListUseCase: GetPopularMoviesUseCase,
     private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
     private val getSearchMovieListUseCase: GetSearchMoviesUseCase,
+    private val getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase,
     uiDispatcher: CoroutineDispatcher
 ) :
     BaseViewModel(uiDispatcher) {
@@ -45,6 +47,13 @@ class MovieViewModel(
         launch {
             _model.value = UiModel.Loading
             getTopRatedMoviesUseCase.execute(::handleMoviesResponse, ::handleErrorResponse)
+        }
+    }
+
+    fun onRequestFavoriteMovies() {
+        launch {
+            _model.value = UiModel.Loading
+            getFavoriteMoviesUseCase.execute(::handleMoviesResponse, ::handleErrorResponse)
         }
     }
 
