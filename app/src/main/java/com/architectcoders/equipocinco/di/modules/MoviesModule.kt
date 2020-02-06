@@ -78,6 +78,11 @@ class MoviesModule(private val context: Activity) {
     }
 
     @Provides
+    fun saveFavoriteMovieUseCase(moviesRepository: ApiRepo): SaveFavoriteMovieUseCase {
+        return SaveFavoriteMovieUseCase(moviesRepository)
+    }
+
+    @Provides
     fun getApiRepository(
         moviesListRemoteDataSource: MovieListRemoteDataSource,
         movieLocalDataSource: LocalDataSource,

@@ -9,4 +9,5 @@ interface MoviesRepository {
     suspend fun searchMovies(query: String): DataState<List<Movie>>
     suspend fun getMovieById(id: Int):  DataState<Movie>
     suspend fun getFavoriteMovies() : DataState<List<Movie>>
+    suspend fun storeFavoriteMovie(movie: Movie) : DataState<Movie>
 }

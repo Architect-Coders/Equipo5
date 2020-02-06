@@ -8,7 +8,6 @@ class GetFavoriteMoviesUseCase(private val moviesRepository: MoviesRepository) :
     MoviesBaseUseCase<List<Movie>, Any>() {
 
     override suspend fun useCaseExecution(params: Any?): DataState<List<Movie>> {
-        return params?.let { moviesRepository.getFavoriteMovies() }
-            ?: DataState.Error("Stored movies not available")
+        return moviesRepository.getFavoriteMovies()
     }
 }

@@ -37,13 +37,15 @@ class MoviesViewModelModule {
         getPopularMoviesUseCase: GetPopularMoviesUseCase,
         getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
         getSearchMoviesUseCase: GetSearchMoviesUseCase,
-        getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
+        getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase,
+        saveFavoriteMovieUseCase: SaveFavoriteMovieUseCase
         ): ViewModel {
         return MovieViewModel(
             getPopularMoviesUseCase,
             getTopRatedMoviesUseCase,
             getSearchMoviesUseCase,
             getFavoriteMoviesUseCase,
+            saveFavoriteMovieUseCase,
             Dispatchers.Main
         )
     }
