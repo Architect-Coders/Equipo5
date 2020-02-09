@@ -43,6 +43,12 @@ abstract class MoviesFragment : BaseFragment() {
 
     private var adapter: MovieAdapter? = null
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        getPresentationComponent().inject(this)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -53,7 +59,6 @@ abstract class MoviesFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        getPresentationComponent().inject(this)
         navController = view.findNavController()
 
         coarsePermissionRequester =
