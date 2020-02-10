@@ -1,93 +1,47 @@
 package com.architectcoders.equipocinco.di.modules
 
-import android.app.Activity
-import com.architectcoders.data.ApiRepo
-import com.architectcoders.data.SessionManager
-import com.architectcoders.equipocinco.data.AndroidPermissionChecker
-import com.architectcoders.equipocinco.data.PlayServicesLocationDataSource
-import com.architectcoders.location.LocationRepository
-import com.architectcoders.source.local.LocalDataSource
-import com.architectcoders.source.local.MovieDao
-import com.architectcoders.source.local.RoomDataSource
-import com.architectcoders.source.remote.ApiService
-import com.architectcoders.source.remote.MovieListRemoteDataSource
-import com.gabriel.usecases.GetMovieUseCase
+import com.architectcoders.domain.MoviesRepository
+import com.architectcoders.presentation.viewmodels.MovieViewModel
 import com.gabriel.usecases.GetPopularMoviesUseCase
 import com.gabriel.usecases.GetSearchMoviesUseCase
 import com.gabriel.usecases.GetTopRatedMoviesUseCase
 import dagger.Module
 import dagger.Provides
-import retrofit2.Retrofit
+import dagger.Subcomponent
+import kotlinx.coroutines.Dispatchers
+
 
 @Module
-class MoviesModule(private val context: Activity) {
+class MoviesModule {
 
     @Provides
-    fun getApiClient(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
-    }
-
-    @Provides
-    fun getRemoteDataSource(apiService: ApiService): MovieListRemoteDataSource {
-        return MovieListRemoteDataSource(apiService)
-    }
-
-    @Provides
-    fun getLocalDataSource(moviesDao: MovieDao): LocalDataSource {
-        return RoomDataSource(moviesDao)
-    }
-
-    @Provides
-    fun getPlayServicesLocationDataSource(): PlayServicesLocationDataSource {
-        return PlayServicesLocationDataSource(context.application)
-    }
-
-    @Provides
-    fun getAndroidPermissionChecker(): AndroidPermissionChecker {
-        return AndroidPermissionChecker(context.application)
-    }
-
-    @Provides
-    fun getLocationRepository(
-        locationDataSource: PlayServicesLocationDataSource,
-        permissionChecker: AndroidPermissionChecker
-    ): LocationRepository {
-        return LocationRepository(locationDataSource, permissionChecker)
-    }
-
-    @Provides
-    fun getPopularMoviesUseCase(moviesRepository: ApiRepo): GetPopularMoviesUseCase {
-        return GetPopularMoviesUseCase(moviesRepository)
-    }
-
-    @Provides
-    fun getTopRatedMoviesUseCase(moviesRepository: ApiRepo): GetTopRatedMoviesUseCase {
-        return GetTopRatedMoviesUseCase(moviesRepository)
-    }
-
-    @Provides
-    fun getSearchMoviesUseCase(moviesRepository: ApiRepo): GetSearchMoviesUseCase {
-        return GetSearchMoviesUseCase(moviesRepository)
-    }
-
-    @Provides
-    fun getMovieUseCase(moviesRepository: ApiRepo): GetMovieUseCase {
-        return GetMovieUseCase(moviesRepository)
-    }
+    fun getSearchMoviesUseCase(moviesRepository: MoviesRepository) =
+        GetSearchMoviesUseCase(moviesRepository)
 
 
     @Provides
-    fun getApiRepository(
-        moviesListRemoteDataSource: MovieListRemoteDataSource,
-        movieLocalDataSource: LocalDataSource,
-        sessionManager: SessionManager,
-        locationRepository: LocationRepository
-    ): ApiRepo {
-        return ApiRepo(
-            moviesListRemoteDataSource,
-            movieLocalDataSource,
-            sessionManager,
-            locationRepository
-        )
-    }
+    fun getPopularMoviesUseCase(moviesRepository: MoviesRepository) =
+        GetPopularMoviesUseCase(moviesRepository)
+
+    @Provides
+    fun getTopRatedMoviesUseCase(moviesRepository: MoviesRepository) =
+        GetTopRatedMoviesUseCase(moviesRepository)
+
+
+    @Provides
+    fun movieViewModel(
+        getPopularMoviesUseCase: GetPopularMoviesUseCase,
+        getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
+        getSearchMoviesUseCase: GetSearchMoviesUseCase
+    ) = MovieViewModel(
+        getPopularMoviesUseCase,
+        getTopRatedMoviesUseCase,
+        getSearchMoviesUseCase,
+        Dispatchers.Main
+    )
+}
+
+@Subcomponent(modules = [(MoviesModule::class)])
+interface MoviesComponent {
+    val movieViewModel: MovieViewModel
 }

@@ -1,4 +1,4 @@
-package com.architectcoders.source.local
+package com.architectcoders.equipocinco.data.source.local
 
 import android.content.Context
 import androidx.room.Database

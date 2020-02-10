@@ -1,4 +1,4 @@
-package com.architectcoders.source.local
+package com.architectcoders.equipocinco.data.source.local
 
 import androidx.room.Dao
 import androidx.room.Insert

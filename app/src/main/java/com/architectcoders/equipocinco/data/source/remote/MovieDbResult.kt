@@ -1,4 +1,4 @@
-package com.architectcoders.source.remote
+package com.architectcoders.equipocinco.data.source.remote
 
 import com.google.gson.annotations.SerializedName
 
