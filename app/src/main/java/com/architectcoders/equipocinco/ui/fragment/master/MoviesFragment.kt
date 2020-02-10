@@ -16,13 +16,13 @@ import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.common.PermissionRequester
 import com.architectcoders.equipocinco.di.modules.MoviesComponent
 import com.architectcoders.equipocinco.di.modules.MoviesModule
+import com.architectcoders.equipocinco.extensions.app
+import com.architectcoders.equipocinco.extensions.getViewModel
 import com.architectcoders.equipocinco.framework.SearchManager
 import com.architectcoders.equipocinco.ui.adapter.MovieAdapter
 import com.architectcoders.equipocinco.ui.fragment.detail.DetailMovieFragment
 import com.architectcoders.generic.framework.extension.isFilled
 import com.architectcoders.generic.framework.extension.view.setVisibleOrGone
-import com.architectcoders.presentation.extensions.app
-import com.architectcoders.presentation.extensions.getViewModel
 import com.architectcoders.presentation.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.progress_bar.*

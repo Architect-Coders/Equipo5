@@ -6,16 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.architectcoders.equipocinco.R
 import com.architectcoders.equipocinco.databinding.FragmentDetailMovieBinding
 import com.architectcoders.equipocinco.di.modules.DetailMovieComponent
 import com.architectcoders.equipocinco.di.modules.DetailMovieModule
-import com.architectcoders.presentation.di.modules.ViewModelProviderFactory
-import com.architectcoders.presentation.extensions.app
-import com.architectcoders.presentation.extensions.getViewModel
+import com.architectcoders.equipocinco.extensions.app
+import com.architectcoders.equipocinco.extensions.getViewModel
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
-import javax.inject.Inject
 
 class DetailMovieFragment : Fragment() {
 
@@ -26,10 +23,11 @@ class DetailMovieFragment : Fragment() {
     private lateinit var component: DetailMovieComponent
     private val viewModel: DetailMovieViewModel by lazy { getViewModel { component.detailViewModel } }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        getPresentationComponent().inject(this)
+        activity?.run {
+            component = app.applicationComponent.plus(DetailMovieModule())
+        } ?: throw Exception("Invalid Activity")
     }
 
     override fun onCreateView(
@@ -52,11 +50,4 @@ class DetailMovieFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        activity?.run {
-            component = app.applicationComponent.plus(DetailMovieModule())
-        } ?: throw Exception("Invalid Activity")
-
-    }
 }
