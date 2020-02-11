@@ -3,6 +3,7 @@ package com.architectcoders.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.architectcoders.domain.model.Movie
+import com.architectcoders.presentation.common.Event
 import com.gabriel.usecases.GetPopularMoviesUseCase
 import com.gabriel.usecases.GetSearchMoviesUseCase
 import com.gabriel.usecases.GetTopRatedMoviesUseCase
@@ -24,11 +25,18 @@ class MovieViewModel(
             return _model
         }
 
+    private val _modelNavigation = MutableLiveData<Event<NavigationModel>>()
+    val modelNavigation: LiveData<Event<NavigationModel>>
+        get() = _modelNavigation
+
+
     sealed class UiModel {
         object Loading : UiModel()
         object RequestMovies : UiModel()
         data class Content(val movies: List<Movie>) : UiModel()
     }
+
+    class NavigationModel(val movie: Movie)
 
     private fun refresh() {
         _model.value = UiModel.RequestMovies
@@ -53,6 +61,12 @@ class MovieViewModel(
             _model.value = UiModel.Loading
             getSearchMovieListUseCase.execute(::handleMoviesResponse, ::handleErrorResponse, query)
         }
+    }
+
+    fun onSelectedMovie(movie: Movie) {
+        _modelNavigation.value = Event(
+                NavigationModel(movie)
+            )
     }
 
     private fun handleMoviesResponse(movies: List<Movie>) {

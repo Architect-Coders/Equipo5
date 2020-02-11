@@ -3,10 +3,10 @@ package com.architectcoders.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.architectcoders.domain.model.Movie
-import com.architectcoders.presentation.extensions.getOriginalTitle
-import com.architectcoders.presentation.extensions.getPopularity
-import com.architectcoders.presentation.extensions.getReleaseDateFormatted
-import com.architectcoders.presentation.extensions.getVoteAverage
+import com.architectcoders.presentation.common.getOriginalTitle
+import com.architectcoders.presentation.common.getPopularity
+import com.architectcoders.presentation.common.getReleaseDateFormatted
+import com.architectcoders.presentation.common.getVoteAverage
 import com.gabriel.usecases.GetMovieUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
@@ -57,6 +57,5 @@ class DetailMovieViewModel(
             _released.value = getReleaseDateFormatted()
             _description.value = overview
         }
-
     }
 }

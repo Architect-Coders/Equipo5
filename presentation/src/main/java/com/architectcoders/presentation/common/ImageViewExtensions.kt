@@ -1,4 +1,4 @@
-package com.architectcoders.presentation.extensions
+package com.architectcoders.presentation.common
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

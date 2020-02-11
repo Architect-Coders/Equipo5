@@ -5,11 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.architectcoders.domain.model.Movie
 import com.architectcoders.equipocinco.R
@@ -18,26 +14,26 @@ import com.architectcoders.equipocinco.di.modules.MoviesComponent
 import com.architectcoders.equipocinco.di.modules.MoviesModule
 import com.architectcoders.equipocinco.extensions.app
 import com.architectcoders.equipocinco.extensions.getViewModel
+import com.architectcoders.equipocinco.extensions.newInstance
 import com.architectcoders.equipocinco.framework.SearchManager
 import com.architectcoders.equipocinco.ui.adapter.MovieAdapter
+import com.architectcoders.equipocinco.ui.fragment.BaseFragment
 import com.architectcoders.equipocinco.ui.fragment.detail.DetailMovieFragment
 import com.architectcoders.generic.framework.extension.isFilled
 import com.architectcoders.generic.framework.extension.view.setVisibleOrGone
+import com.architectcoders.presentation.common.Event
 import com.architectcoders.presentation.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.progress_bar.*
 import kotlinx.android.synthetic.main.search.*
 
-abstract class MoviesFragment : Fragment() {
+abstract class MoviesFragment : BaseFragment() {
 
-    private lateinit var navController: NavController
     private lateinit var coarsePermissionRequester: PermissionRequester
-
     private lateinit var component: MoviesComponent
+    private var adapter: MovieAdapter? = null
 
     protected val viewModel: MovieViewModel by lazy { getViewModel { component.movieViewModel } }
-
-    private var adapter: MovieAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,7 +43,6 @@ abstract class MoviesFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_movies, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -56,8 +51,6 @@ abstract class MoviesFragment : Fragment() {
         } ?: throw Exception("Invalid Activity")
 
 
-        navController = view.findNavController()
-
         coarsePermissionRequester =
             PermissionRequester(activity, Manifest.permission.ACCESS_COARSE_LOCATION)
 
@@ -65,7 +58,13 @@ abstract class MoviesFragment : Fragment() {
             viewModel.model.observe(viewLifecycleOwner, Observer(::updateUI))
         }
 
+        navigationObserver()
         initClSearch()
+    }
+
+
+    private fun navigationObserver() {
+        viewModel.modelNavigation.observe(viewLifecycleOwner, Observer(::navigationResult))
     }
 
     private fun updateUI(model: MovieViewModel.UiModel) {
@@ -76,22 +75,20 @@ abstract class MoviesFragment : Fragment() {
         }
     }
 
-    abstract fun onRequestMovies()
-
     private fun updateData(movies: List<Movie>) {
         initAdapter(movies)
+    }
+
+    private fun navigationResult(navigationModel: Event<MovieViewModel.NavigationModel>) {
+        navigationModel.getContentIfNotHandled()?.let { navModel ->
+            mFragmentNavigation.pushFragment(DetailMovieFragment.newInstance(navModel.movie.id))
+        }
     }
 
     private fun initAdapter(items: List<Movie>) {
         rv?.let {
             rv.layoutManager = GridLayoutManager(activity, 3)
-            adapter =
-                MovieAdapter(items.toMutableList()) {
-                    navController.navigate(
-                        R.id.action_moviesFragment_to_detailMovieFragment,
-                        bundleOf(DetailMovieFragment.MOVIE_ID_KEY to it.id)
-                    )
-                }
+            adapter = MovieAdapter(items.toMutableList(), viewModel::onSelectedMovie)
             rv.adapter = adapter
             pb.hide()
         }
@@ -114,4 +111,7 @@ abstract class MoviesFragment : Fragment() {
     private fun searchMovies(query: String) {
         viewModel.onSearchMovies(query)
     }
+
+    abstract fun onRequestMovies()
+
 }

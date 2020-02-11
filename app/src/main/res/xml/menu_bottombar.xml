@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        icon="@drawable/ic_popular_movies"
+        id="@+id/menu_popular"
+        title="@string/movies_bottom_navigation_popular"
+        />
+    <tab
+        icon="@drawable/ic_top_rated_movies"
+        id ="@+id/menu_top_rated"
+        title="@string/movies_bottom_navigation_toprated"
+
+
+        />
+    <tab
+        icon="@drawable/ic_favorite_24px"
+        id="@+id/menu_favourites"
+        title="@string/movies_bottom_navigation_favourites"
+        />
+</tabs>
