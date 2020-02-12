@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.data
+package com.architectcoders.equipocinco.data.location
 
 import android.annotation.SuppressLint
 import android.app.Application

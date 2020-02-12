@@ -36,6 +36,10 @@ ext {
     // Dagger
     daggerVersion = '2.24'
 
+    // LifeCycle
+    androidarch_lifecycle_version = "1.1.1"
+
+
     retrofitVersion = '2.6.3'
     loggingInterceptorVersion = '4.2.1'
 
@@ -92,6 +96,10 @@ ext {
             dagger: "com.google.dagger:dagger:${daggerVersion}",
             servicesLocation: "com.google.android.gms:play-services-location:${servicesLocationVersion}"
 
+    ]
+
+    androidLifecycle = [
+            androidLifecycle: "android.arch.lifecycle:extensions:$androidarch_lifecycle_version"
     ]
 
     androidKaptLibs = [

@@ -1,14 +1,20 @@
 package com.architectcoders.equipocinco.di
 
-import com.architectcoders.di.ApplicationDatabaseModule
-import com.architectcoders.equipocinco.di.modules.ApplicationModule
-import com.architectcoders.equipocinco.di.modules.MoviesModule
-import com.architectcoders.equipocinco.di.subcomponents.PresentationComponent
+import android.app.Application
+import com.architectcoders.equipocinco.di.modules.*
+import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [ApplicationModule::class, ApplicationDatabaseModule::class])
+@Component(modules = [ApplicationModule::class, DataModule::class])
 interface ApplicationComponent {
-    fun presentationComponent(moviesModule: MoviesModule): PresentationComponent
+
+    fun plus(module: MoviesModule): MoviesComponent
+    fun plus(module: DetailMovieModule): DetailMovieComponent
+
+    @Component.Factory
+    interface Factory {
+        fun create(@BindsInstance app: Application): ApplicationComponent
+    }
 }

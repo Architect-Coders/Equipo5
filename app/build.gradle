@@ -16,7 +16,7 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-        resValue "string", "movie_db_api_key", MOVIE_DB_API_KEY
+        buildConfigField "String", "movie_db_api_key", MOVIE_DB_API_KEY
         buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/3/\""
     }
     buildTypes {
@@ -31,6 +31,9 @@ android {
     }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+    dataBinding {
+        enabled = true
     }
 }
 
@@ -54,6 +57,8 @@ dependencies {
     implementation coroutinesAdapterDependencies.values()
     implementation navigationDepdendencies.values()
     implementation dexterDependencies.values()
+    implementation androidLifecycle.values()
+    implementation roomDependencies.values()
 }
 
 androidAnalyzer {

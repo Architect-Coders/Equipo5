@@ -1,6 +1,6 @@
-package com.architectcoders.source.remote
+package com.architectcoders.equipocinco.data.source.remote
 
-import com.architectcoders.data.BuildConfig
+import com.architectcoders.equipocinco.BuildConfig
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query

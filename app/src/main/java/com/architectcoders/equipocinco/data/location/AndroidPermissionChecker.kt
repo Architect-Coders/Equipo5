@@ -1,4 +1,4 @@
-package com.architectcoders.equipocinco.data
+package com.architectcoders.equipocinco.data.location
 
 import android.Manifest
 import android.app.Application
@@ -6,7 +6,8 @@ import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
 import com.architectcoders.location.PermissionChecker
 
-class AndroidPermissionChecker(private val application: Application) : PermissionChecker {
+class AndroidPermissionChecker(private val application: Application) :
+    PermissionChecker {
 
     override suspend fun checkPermission(permission: PermissionChecker.Permission): Boolean =
         ContextCompat.checkSelfPermission(
