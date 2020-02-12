@@ -41,6 +41,9 @@ class DetailMovieViewModel(
     private val _description = MutableLiveData<String>()
     val description: LiveData<String> = _description
 
+    private val _favorite = MutableLiveData<Boolean>()
+    val favorite: LiveData<Boolean> = _favorite
+
     fun onMovieDetailLoading(id: Int) {
         launch {
             getMovieUseCase.execute(::handleSuccessMovie, params = id)
