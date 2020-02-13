@@ -59,6 +59,7 @@ class DetailMovieViewModel(
             _rate.value = getVoteAverage()
             _released.value = getReleaseDateFormatted()
             _description.value = overview
+            _favorite.value = favorite
         }
 
     }

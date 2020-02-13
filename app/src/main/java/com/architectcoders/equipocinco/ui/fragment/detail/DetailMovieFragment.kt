@@ -46,7 +46,6 @@ class DetailMovieFragment : Fragment() {
                 viewModel.onMovieDetailLoading(it)
             }
         }
-
         return binding.root
     }
 
