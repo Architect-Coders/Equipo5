@@ -49,7 +49,7 @@ class DetailMovieFragment : Fragment() {
         arguments?.let { bundle ->
             bundle.getInt(MOVIE_ID_KEY).let { movieId ->
                 viewModel.onMovieDetailLoading(movieId)
-                btn.setOnClickListener { viewModel.onFavoriteMovie(movieId) }
+                btn.setOnClickListener { viewModel.onFavoriteMovie() }
             }
         }
     }

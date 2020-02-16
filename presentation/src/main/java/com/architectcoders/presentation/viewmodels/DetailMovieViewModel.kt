@@ -22,6 +22,8 @@ class DetailMovieViewModel(
         private const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/original/"
     }
 
+    private lateinit var currentMovie: Movie
+
     private val _url = MutableLiveData<String>()
     val url: LiveData<String> = _url
 
@@ -54,6 +56,7 @@ class DetailMovieViewModel(
 
     private fun handleSuccessMovie(movie: Movie) {
         movie.run {
+            currentMovie = movie
             _url.value = "$POSTER_BASE_URL${posterPath}"
             _title.value = title
             _originalTitle.value = getOriginalTitle()
@@ -66,9 +69,10 @@ class DetailMovieViewModel(
 
     }
 
-    fun onFavoriteMovie(id: Int) {
+    fun onFavoriteMovie() {
         launch {
-            saveFavoriteMovieUseCase.execute(::handleSuccessMovie, params = id)
+            currentMovie.favorite = !currentMovie.favorite
+            saveFavoriteMovieUseCase.execute(::handleSuccessMovie, params = currentMovie)
         }
     }
 }
