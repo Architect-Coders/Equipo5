@@ -4,7 +4,10 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.architectcoders.domain.model.Movie
-import com.gabriel.usecases.*
+import com.gabriel.usecases.GetFavoriteMoviesUseCase
+import com.gabriel.usecases.GetPopularMoviesUseCase
+import com.gabriel.usecases.GetSearchMoviesUseCase
+import com.gabriel.usecases.GetTopRatedMoviesUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
@@ -13,7 +16,6 @@ class MovieViewModel(
     private val getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
     private val getSearchMovieListUseCase: GetSearchMoviesUseCase,
     private val getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase,
-    private val saveFavoriteMovieUseCase: SaveFavoriteMovieUseCase,
     uiDispatcher: CoroutineDispatcher
 ) :
     BaseViewModel(uiDispatcher) {

@@ -37,15 +37,13 @@ class MoviesViewModelModule {
         getPopularMoviesUseCase: GetPopularMoviesUseCase,
         getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
         getSearchMoviesUseCase: GetSearchMoviesUseCase,
-        getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase,
-        saveFavoriteMovieUseCase: SaveFavoriteMovieUseCase
-        ): ViewModel {
+        getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
+    ): ViewModel {
         return MovieViewModel(
             getPopularMoviesUseCase,
             getTopRatedMoviesUseCase,
             getSearchMoviesUseCase,
             getFavoriteMoviesUseCase,
-            saveFavoriteMovieUseCase,
             Dispatchers.Main
         )
     }
@@ -53,7 +51,13 @@ class MoviesViewModelModule {
     @Provides
     @IntoMap
     @ViewModelKey(DetailMovieViewModel::class)
-    fun detailMovieViewModel(getMovieUseCase: GetMovieUseCase): ViewModel {
-        return DetailMovieViewModel(getMovieUseCase, Dispatchers.Main)
+    fun detailMovieViewModel(
+        getMovieUseCase: GetMovieUseCase,
+        saveFavoriteMovieUseCase: SaveFavoriteMovieUseCase
+    ): ViewModel {
+        return DetailMovieViewModel(
+            getMovieUseCase,
+            saveFavoriteMovieUseCase,
+            Dispatchers.Main)
     }
 }

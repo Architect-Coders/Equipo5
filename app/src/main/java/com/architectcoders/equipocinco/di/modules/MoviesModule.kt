@@ -40,14 +40,12 @@ class MoviesModule {
         getPopularMoviesUseCase: GetPopularMoviesUseCase,
         getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
         getSearchMoviesUseCase: GetSearchMoviesUseCase,
-        getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase,
-        saveFavoriteMovieUseCase: SaveFavoriteMovieUseCase
+        getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
     ) = MovieViewModel(
         getPopularMoviesUseCase,
         getTopRatedMoviesUseCase,
         getSearchMoviesUseCase,
         getFavoriteMoviesUseCase,
-        saveFavoriteMovieUseCase,
         Dispatchers.Main
     )
 }

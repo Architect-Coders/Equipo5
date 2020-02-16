@@ -8,11 +8,13 @@ import com.architectcoders.presentation.extensions.getPopularity
 import com.architectcoders.presentation.extensions.getReleaseDateFormatted
 import com.architectcoders.presentation.extensions.getVoteAverage
 import com.gabriel.usecases.GetMovieUseCase
+import com.gabriel.usecases.SaveFavoriteMovieUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
 class DetailMovieViewModel(
     private val getMovieUseCase: GetMovieUseCase,
+    private val saveFavoriteMovieUseCase: SaveFavoriteMovieUseCase,
     uiDispatcher: CoroutineDispatcher
 ) : BaseViewModel(uiDispatcher) {
 
@@ -62,5 +64,11 @@ class DetailMovieViewModel(
             _favorite.value = favorite
         }
 
+    }
+
+    fun onFavoriteMovie(id: Int) {
+        launch {
+            saveFavoriteMovieUseCase.execute(::handleSuccessMovie, params = id)
+        }
     }
 }
