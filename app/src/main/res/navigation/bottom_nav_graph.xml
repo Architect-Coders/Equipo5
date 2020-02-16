@@ -64,6 +64,18 @@
         android:id="@+id/favouriteMoviesFragment"
         android:name="com.architectcoders.equipocinco.ui.fragment.master.child.FavouriteMoviesFragment"
         android:label="fragment_favourite_movies"
-        tools:layout="@layout/fragment_movies" />
+        tools:layout="@layout/fragment_movies" >
+        <action
+            android:id="@+id/action_moviesFragment_to_detailMovieFragment"
+            app:destination="@id/detailMovieFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim">
+            <argument
+                android:name="DetailMovieFragment::id"
+                android:defaultValue="0" />
+        </action>
+    </fragment>
 
 </navigation>
