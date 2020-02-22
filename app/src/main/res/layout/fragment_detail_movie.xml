@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.architectcoders.presentation.viewmodels.DetailMovieViewModel" />
@@ -23,12 +24,28 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/height_image_detail_movie"
                 android:scaleType="centerCrop"
-                app:url="@{viewmodel.url}"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:url="@{viewmodel.url}"
                 tools:background="@color/colorAccent"
                 tools:ignore="ContentDescription" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="16dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:favorite="@{viewmodel.favorite}"
+                app:backgroundTint="@color/colorPrimary"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/ic_star_border" />
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -47,8 +64,8 @@
                 android:id="@+id/tvOriginalTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray"
                 android:text="@{viewmodel.originalTitle}"
+                android:textColor="@color/gray"
                 app:layout_constraintBottom_toTopOf="@+id/tvRateNumber"
                 app:layout_constraintStart_toStartOf="@+id/tvTitle"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitle"
@@ -59,8 +76,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textColor="@color/gold"
                 android:text="@{viewmodel.rate}"
+                android:textColor="@color/gold"
                 app:layout_constraintEnd_toEndOf="@+id/tvTitle"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="@+id/tvTitle"
@@ -81,9 +98,9 @@
                 android:id="@+id/tvDescription"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="@{viewmodel.description}"
                 android:layout_marginTop="@dimen/margin_detail_movie_data"
                 android:layout_marginEnd="@dimen/margin_detail_movie_data"
+                android:text="@{viewmodel.description}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/ivMoviePoster"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -95,8 +112,8 @@
                 android:id="@+id/tvReleaseDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/lower_text_size"
                 android:text="@{viewmodel.released}"
+                android:textSize="@dimen/lower_text_size"
                 app:layout_constraintBottom_toBottomOf="@+id/ivRateAverage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.1"
@@ -108,8 +125,8 @@
                 android:id="@+id/tvPopularity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="@dimen/lower_text_size"
                 android:text="@{viewmodel.popularity}"
+                android:textSize="@dimen/lower_text_size"
                 app:layout_constraintBottom_toBottomOf="@+id/tvOriginalTitle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvOriginalTitle"

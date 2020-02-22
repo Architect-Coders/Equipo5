@@ -3,6 +3,7 @@ package com.architectcoders.equipocinco.di.modules
 import com.architectcoders.domain.MoviesRepository
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
 import com.gabriel.usecases.GetMovieUseCase
+import com.gabriel.usecases.SaveFavoriteMovieUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
@@ -16,8 +17,16 @@ class DetailMovieModule {
     fun getMovieUseCase(moviesRepository: MoviesRepository) = GetMovieUseCase(moviesRepository)
 
     @Provides
-    fun detailMovieViewModel(getMovieUseCase: GetMovieUseCase) =
-        DetailMovieViewModel(getMovieUseCase, Dispatchers.Main)
+    fun getSaveFavoriteMovieUseCase(moviesRepository: MoviesRepository) = SaveFavoriteMovieUseCase(moviesRepository)
+
+    @Provides
+    fun detailMovieViewModel(
+        getMovieUseCase: GetMovieUseCase,
+        saveFavoriteMovieUseCase: SaveFavoriteMovieUseCase
+    ) =
+        DetailMovieViewModel(getMovieUseCase,
+            saveFavoriteMovieUseCase,
+            Dispatchers.Main)
 
 }
 

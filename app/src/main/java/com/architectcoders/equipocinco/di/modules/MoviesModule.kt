@@ -2,9 +2,7 @@ package com.architectcoders.equipocinco.di.modules
 
 import com.architectcoders.domain.MoviesRepository
 import com.architectcoders.presentation.viewmodels.MovieViewModel
-import com.gabriel.usecases.GetPopularMoviesUseCase
-import com.gabriel.usecases.GetSearchMoviesUseCase
-import com.gabriel.usecases.GetTopRatedMoviesUseCase
+import com.gabriel.usecases.*
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
@@ -27,16 +25,27 @@ class MoviesModule {
     fun getTopRatedMoviesUseCase(moviesRepository: MoviesRepository) =
         GetTopRatedMoviesUseCase(moviesRepository)
 
+    @Provides
+    fun getFavoriteMoviesUseCase(moviesRepository: MoviesRepository): GetFavoriteMoviesUseCase {
+        return GetFavoriteMoviesUseCase(moviesRepository)
+    }
+
+    @Provides
+    fun saveFavoriteMovieUseCase(moviesRepository: MoviesRepository): SaveFavoriteMovieUseCase {
+        return SaveFavoriteMovieUseCase(moviesRepository)
+    }
 
     @Provides
     fun movieViewModel(
         getPopularMoviesUseCase: GetPopularMoviesUseCase,
         getTopRatedMoviesUseCase: GetTopRatedMoviesUseCase,
-        getSearchMoviesUseCase: GetSearchMoviesUseCase
+        getSearchMoviesUseCase: GetSearchMoviesUseCase,
+        getFavoriteMoviesUseCase: GetFavoriteMoviesUseCase
     ) = MovieViewModel(
         getPopularMoviesUseCase,
         getTopRatedMoviesUseCase,
         getSearchMoviesUseCase,
+        getFavoriteMoviesUseCase,
         Dispatchers.Main
     )
 }

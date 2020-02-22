@@ -13,6 +13,7 @@ import com.architectcoders.equipocinco.di.modules.DetailMovieModule
 import com.architectcoders.equipocinco.extensions.app
 import com.architectcoders.equipocinco.extensions.getViewModel
 import com.architectcoders.presentation.viewmodels.DetailMovieViewModel
+import kotlinx.android.synthetic.main.fragment_detail_movie.*
 
 class DetailMovieFragment : Fragment() {
 
@@ -40,14 +41,16 @@ class DetailMovieFragment : Fragment() {
         )
         binding.viewmodel = viewModel
         binding.lifecycleOwner = this
-
-        arguments?.let { bundle ->
-            bundle.getInt(MOVIE_ID_KEY).let {
-                viewModel.onMovieDetailLoading(it)
-            }
-        }
-
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        arguments?.let { bundle ->
+            bundle.getInt(MOVIE_ID_KEY).let { movieId ->
+                viewModel.onMovieDetailLoading(movieId)
+                btn.setOnClickListener { viewModel.onFavoriteMovie() }
+            }
+        }
+    }
 }

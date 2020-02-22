@@ -2,6 +2,7 @@ package com.architectcoders.repository
 
 import com.architectcoders.data.singleSourceOfData
 import com.architectcoders.domain.MoviesRepository
+import com.architectcoders.domain.model.Movie
 import com.architectcoders.domain.state.DataState
 import com.architectcoders.location.LocationRepository
 import com.architectcoders.source.local.DeviceSource
@@ -36,4 +37,11 @@ class ApiRepo(
             shouldFetch = { (deviceManager.isConnectedToTheInternet()) })
 
     override suspend fun getMovieById(id: Int) = DataState.Success(localDataSource.getMovie(id))
+
+    override suspend fun getFavoriteMovies() = DataState.Success(localDataSource.getFavoriteMovies())
+
+    override suspend fun storeFavoriteMovie(movie: Movie) : DataState<Movie> {
+        localDataSource.saveFavoriteMovie(movie)
+        return DataState.Success(movie)
+    }
 }
