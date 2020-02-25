@@ -40,10 +40,12 @@ dependencies {
     implementation jetBrainsDependencies.values()
     implementation androidXDependencies.values()
     implementation androidDependenciesFramework.values()
-    kapt androidKaptLibs.values()
     implementation coroutinesDependencies.values()
+
+    kapt androidKaptLibs.values()
 
     testImplementation testDependencies.values()
     testImplementation androidXTestLibs.values()
+
     androidTestImplementation androidTestDependencies.values()
 }
