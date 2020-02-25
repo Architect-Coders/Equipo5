@@ -25,9 +25,15 @@ ext {
 
     // Test
     junit_version = '4.12'
+    mockitokotlin_version = '2.2.0'
+    mockitoinline_version = '2.8.47'
+
+    // Android Core Testing
+    archcoretesting_version = '1.1.1'
 
     // AndroidTest
     androidx_junit_version = "1.1.1"
+    testrunner_version = "1.2.8"
     espresso_core_version = "3.2.0"
 
     // AndroidAnalyzer
@@ -38,7 +44,6 @@ ext {
 
     // LifeCycle
     androidarch_lifecycle_version = "1.1.1"
-
 
     retrofitVersion = '2.6.3'
     loggingInterceptorVersion = '4.2.1'
@@ -84,7 +89,13 @@ ext {
     ]
 
     testDependencies = [
-            jUnit: "junit:junit:${junit_version}",
+            jUnit           : "junit:junit:${junit_version}",
+            mockitoCore     : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitokotlin_version}",
+            mokitoInlline   : "org.mockito:mockito-inline:${mockitoinline_version}",
+    ]
+
+    androidXTestLibs = [
+            androidCoreTesting : "android.arch.core:core-testing:${archcoretesting_version}"
     ]
 
     androidTestDependencies = [

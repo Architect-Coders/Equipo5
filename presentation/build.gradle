@@ -39,9 +39,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation jetBrainsDependencies.values()
     implementation androidXDependencies.values()
-    testImplementation testDependencies.values()
     implementation androidDependenciesFramework.values()
     kapt androidKaptLibs.values()
-    androidTestImplementation androidTestDependencies.values()
     implementation coroutinesDependencies.values()
+
+    testImplementation testDependencies.values()
+    testImplementation androidXTestLibs.values()
+    androidTestImplementation androidTestDependencies.values()
 }

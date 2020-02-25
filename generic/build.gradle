@@ -23,10 +23,12 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation jetBrainsDependencies.values()
     implementation androidXDependencies.values()
-    testImplementation testDependencies.values()
-    androidTestImplementation androidTestDependencies.values()
     implementation glideDependencies.values()
     annotationProcessor glideCompilerDependencies.values()
+
+    testImplementation testDependencies.values()
+    testImplementation androidXTestLibs.values()
+    androidTestImplementation androidTestDependencies.values()
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
