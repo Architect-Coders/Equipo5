@@ -29,11 +29,12 @@ ext {
     mockitoinline_version = '2.8.47'
 
     // Android Core Testing
-    archcoretesting_version = '1.1.1'
+    archcoretesting_version = '2.1.0'
 
     // AndroidTest
     androidx_junit_version = "1.1.1"
-    testrunner_version = "1.2.8"
+    testrunner_version = "1.2.0"
+    testrules_version = "1.1.0"
     espresso_core_version = "3.2.0"
 
     // AndroidAnalyzer
@@ -95,11 +96,13 @@ ext {
     ]
 
     androidXTestLibs = [
-            androidCoreTesting : "android.arch.core:core-testing:${archcoretesting_version}"
+            androidCoreTesting : "androidx.arch.core:core-testing:${archcoretesting_version}"
     ]
 
     androidTestDependencies = [
             androidXJUnit: "androidx.test.ext:junit:${androidx_junit_version}",
+            testRunner: "androidx.test:runner:${testrunner_version}",
+            testRules:  "androidx.test:rules:${testrules_version}",
             espressoCore : "androidx.test.espresso:espresso-core:${espresso_core_version}",
     ]
 
