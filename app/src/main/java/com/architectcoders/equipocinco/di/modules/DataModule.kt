@@ -1,11 +1,11 @@
 package com.architectcoders.equipocinco.di.modules
 
 import android.app.Application
-import com.architectcoders.repository.ApiRepo
 import com.architectcoders.domain.MoviesRepository
 import com.architectcoders.equipocinco.data.source.local.DeviceManager
 import com.architectcoders.location.LocationRepository
 import com.architectcoders.location.PermissionChecker
+import com.architectcoders.repository.ApiRepo
 import com.architectcoders.source.local.DeviceSource
 import com.architectcoders.source.local.LocalDataSource
 import com.architectcoders.source.local.LocationDataSource

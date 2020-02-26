@@ -15,7 +15,7 @@ ext {
     MOVIE_DB_API_KEY = properties.getProperty('MOVIE_DB_API_KEY')
 
     // Jetbrains
-    kotlin_version = '1.3.50'
+    kotlin_version = '1.3.61'
 
     // AndroidX
     gradle_version = '3.5.2'
@@ -56,6 +56,9 @@ ext {
 
     dexterVersion = "5.0.0"
 
+    navigationFragNav = "3.2.0"
+    bottombar = "2.3.1"
+
     versionNumbers = [
             compileSdkVersion: 29,
             buildToolsVersion: "29.0.2",
@@ -68,12 +71,11 @@ ext {
     ]
 
     classpathDependencies = [
-            androidToolsBuild       : "com.android.tools.build:gradle:${gradle_version}",
-            kotlinGradlePlugin      : "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
-            androidAnalyzer         : "com.justpinch:androidanalyzer:${android_analyzer_version}",
             androidToolsBuild : "com.android.tools.build:gradle:${gradle_version}",
             kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
-            safeArgs          : "androidx.navigation:navigation-safe-args-gradle-plugin:${safeargs_version}"
+            androidAnalyzer   : "com.justpinch:androidanalyzer:${android_analyzer_version}",
+            androidToolsBuild : "com.android.tools.build:gradle:${gradle_version}",
+            kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
     ]
 
     androidXDependencies = [
@@ -93,7 +95,7 @@ ext {
     ]
 
     androidDependenciesFramework = [
-            dagger: "com.google.dagger:dagger:${daggerVersion}",
+            dagger          : "com.google.dagger:dagger:${daggerVersion}",
             servicesLocation: "com.google.android.gms:play-services-location:${servicesLocationVersion}"
 
     ]
@@ -125,8 +127,8 @@ ext {
     ]
 
     navigationDepdendencies = [
-            navigationFragment: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentVersion}",
-            navigationUi      : "androidx.navigation:navigation-ui-ktx:${navigationUiVersion}",
+            fragnav  : "com.ncapdevi:frag-nav:${navigationFragNav}",
+            bottombar: "com.roughike:bottom-bar:${bottombar}"
     ]
 
     roomDependencies = [
@@ -143,6 +145,6 @@ ext {
     ]
 
     dexterDependencies = [
-            dexter : "com.karumi:dexter:${dexterVersion}"
+            dexter: "com.karumi:dexter:${dexterVersion}"
     ]
 }

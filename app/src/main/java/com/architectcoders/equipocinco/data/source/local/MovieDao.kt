@@ -20,6 +20,12 @@ interface MovieDao {
     @Query("SELECT * FROM movies WHERE id LIKE :id")
     fun getMovie(id: Int): MovieDb
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun insertAll(movies: List<MovieDb>)
+
+    @Query("SELECT * FROM movies WHERE favorite = 1")
+    fun getFavoriteMovies(): List<MovieDb>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAll(movies: List<MovieDb>)
+    fun insertFavoriteMovie(movie: MovieDb)
 }

@@ -1,8 +1,6 @@
 package com.architectcoders.equipocinco.di
 
 import android.app.Application
-import com.architectcoders.equipocinco.di.modules.ApplicationModule
-import com.architectcoders.equipocinco.di.modules.DataModule
 import com.architectcoders.equipocinco.di.modules.*
 import dagger.BindsInstance
 import dagger.Component

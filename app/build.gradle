@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
-apply plugin: "androidx.navigation.safeargs.kotlin"
 apply plugin: 'com.justpinch.androidanalyzer'
 
 android {
@@ -59,10 +58,6 @@ dependencies {
     implementation dexterDependencies.values()
     implementation androidLifecycle.values()
     implementation roomDependencies.values()
-
-    implementation 'com.ncapdevi:frag-nav:3.2.0'   //or or `compile` if on older gradle version
-    implementation "com.roughike:bottom-bar:2.3.1"
-
 }
 
 androidAnalyzer {
