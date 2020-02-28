@@ -1,4 +1,4 @@
-package com.architectcoders.presentation.extensions
+package com.architectcoders.presentation.common
 
 import com.architectcoders.domain.model.Movie
 import com.architectcoders.generic.framework.extension.EMPTY

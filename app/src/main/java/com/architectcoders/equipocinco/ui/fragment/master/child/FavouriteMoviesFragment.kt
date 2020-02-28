@@ -2,7 +2,9 @@ package com.architectcoders.equipocinco.ui.fragment.master.child
 
 import com.architectcoders.equipocinco.ui.fragment.master.MoviesFragment
 
-class FavouriteMoviesFragment : MoviesFragment(){
+class FavouriteMoviesFragment : MoviesFragment() {
+
+    companion object;
 
     override fun onRequestMovies() = viewModel.onRequestFavoriteMovies()
 

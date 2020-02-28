@@ -3,10 +3,10 @@ package com.architectcoders.presentation.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.architectcoders.domain.model.Movie
-import com.architectcoders.presentation.extensions.getOriginalTitle
-import com.architectcoders.presentation.extensions.getPopularity
-import com.architectcoders.presentation.extensions.getReleaseDateFormatted
-import com.architectcoders.presentation.extensions.getVoteAverage
+import com.architectcoders.presentation.common.getOriginalTitle
+import com.architectcoders.presentation.common.getPopularity
+import com.architectcoders.presentation.common.getReleaseDateFormatted
+import com.architectcoders.presentation.common.getVoteAverage
 import com.gabriel.usecases.GetMovieUseCase
 import com.gabriel.usecases.SaveFavoriteMovieUseCase
 import kotlinx.coroutines.CoroutineDispatcher
@@ -66,7 +66,6 @@ class DetailMovieViewModel(
             _description.value = overview
             _favorite.value = favorite
         }
-
     }
 
     fun onFavoriteMovie() {
