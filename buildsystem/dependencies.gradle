@@ -24,10 +24,17 @@ ext {
     constraintlayout_version = '1.1.3'
 
     // Test
-    junit_version = '4.12'
+    junit_version = '4.13'
+    mockito_version = '3.3.1'
+    mockitoinline_version = '3.3.0'
+
+    // Android Core Testing
+    archcoretesting_version = '2.1.0'
 
     // AndroidTest
     androidx_junit_version = "1.1.1"
+    testrunner_version = "1.2.0"
+    testrules_version = "1.1.0"
     espresso_core_version = "3.2.0"
 
     // AndroidAnalyzer
@@ -38,7 +45,6 @@ ext {
 
     // LifeCycle
     androidarch_lifecycle_version = "1.1.1"
-
 
     retrofitVersion = '2.6.3'
     loggingInterceptorVersion = '4.2.1'
@@ -84,11 +90,19 @@ ext {
     ]
 
     testDependencies = [
-            jUnit: "junit:junit:${junit_version}",
+            jUnit           : "junit:junit:${junit_version}",
+            mockitoCore     : "org.mockito:mockito-core:${mockito_version}",
+            mokitoInlline   : "org.mockito:mockito-inline:${mockitoinline_version}",
+    ]
+
+    androidXTestLibs = [
+            androidCoreTesting : "androidx.arch.core:core-testing:${archcoretesting_version}"
     ]
 
     androidTestDependencies = [
             androidXJUnit: "androidx.test.ext:junit:${androidx_junit_version}",
+            testRunner: "androidx.test:runner:${testrunner_version}",
+            testRules:  "androidx.test:rules:${testrules_version}",
             espressoCore : "androidx.test.espresso:espresso-core:${espresso_core_version}",
     ]
 
