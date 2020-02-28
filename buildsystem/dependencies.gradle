@@ -25,7 +25,7 @@ ext {
 
     // Test
     junit_version = '4.13'
-    mockitokotlin_version = '2.2.0'
+    mockito_version = '3.3.1'
     mockitoinline_version = '3.3.0'
 
     // Android Core Testing
@@ -91,7 +91,7 @@ ext {
 
     testDependencies = [
             jUnit           : "junit:junit:${junit_version}",
-            mockitoCore     : "com.nhaarman.mockitokotlin2:mockito-kotlin:${mockitokotlin_version}",
+            mockitoCore     : "org.mockito:mockito-core:${mockito_version}",
             mokitoInlline   : "org.mockito:mockito-inline:${mockitoinline_version}",
     ]
 
