@@ -145,7 +145,8 @@ ext {
 
     roomDependencies = [
             navigationRoomRuntime: 'androidx.room:room-runtime:2.2.3',
-            room                 : "androidx.room:room-ktx:2.2.3"
+            room                 : "androidx.room:room-ktx:2.2.3",
+            rxandroid: "io.reactivex.rxjava3:rxandroid:3.0.0"
     ]
 
     glideDependencies = [

@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import io.reactivex.rxjava3.core.Flowable
 
 @Dao
 interface MovieDao {
@@ -24,7 +25,7 @@ interface MovieDao {
     fun insertAll(movies: List<MovieDb>)
 
     @Query("SELECT * FROM movies WHERE favorite = 1")
-    fun getFavoriteMovies(): List<MovieDb>
+    fun getFavoriteMovies(): Flowable<List<MovieDb>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFavoriteMovie(movie: MovieDb)
