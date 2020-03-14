@@ -36,6 +36,7 @@ dependencies {
     implementation project(':domain')
     implementation project(':usecases')
     implementation project(':generic')
+    implementation project(":testShared")
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation jetBrainsDependencies.values()
     implementation androidXDependencies.values()

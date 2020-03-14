@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/generic" />
             <option value="$PROJECT_DIR$/presentation" />
+            <option value="$PROJECT_DIR$/testShared" />
             <option value="$PROJECT_DIR$/usecases" />
           </set>
         </option>
