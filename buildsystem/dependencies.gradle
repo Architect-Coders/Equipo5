@@ -62,6 +62,8 @@ ext {
 
     dexterVersion = "5.0.0"
 
+    roomVersion = "2.2.3"
+
     versionNumbers = [
             compileSdkVersion: 29,
             buildToolsVersion: "29.0.2",
@@ -74,9 +76,9 @@ ext {
     ]
 
     classpathDependencies = [
-            androidToolsBuild       : "com.android.tools.build:gradle:${gradle_version}",
-            kotlinGradlePlugin      : "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
-            androidAnalyzer         : "com.justpinch:androidanalyzer:${android_analyzer_version}",
+            androidToolsBuild : "com.android.tools.build:gradle:${gradle_version}",
+            kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
+            androidAnalyzer   : "com.justpinch:androidanalyzer:${android_analyzer_version}",
             androidToolsBuild : "com.android.tools.build:gradle:${gradle_version}",
             kotlinGradlePlugin: "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}",
             safeArgs          : "androidx.navigation:navigation-safe-args-gradle-plugin:${safeargs_version}"
@@ -90,24 +92,24 @@ ext {
     ]
 
     testDependencies = [
-            jUnit           : "junit:junit:${junit_version}",
-            mockitoCore     : "org.mockito:mockito-core:${mockito_version}",
-            mokitoInlline   : "org.mockito:mockito-inline:${mockitoinline_version}",
+            jUnit        : "junit:junit:${junit_version}",
+            mockitoCore  : "org.mockito:mockito-core:${mockito_version}",
+            mokitoInlline: "org.mockito:mockito-inline:${mockitoinline_version}",
     ]
 
     androidXTestLibs = [
-            androidCoreTesting : "androidx.arch.core:core-testing:${archcoretesting_version}"
+            androidCoreTesting: "androidx.arch.core:core-testing:${archcoretesting_version}"
     ]
 
     androidTestDependencies = [
             androidXJUnit: "androidx.test.ext:junit:${androidx_junit_version}",
-            testRunner: "androidx.test:runner:${testrunner_version}",
-            testRules:  "androidx.test:rules:${testrules_version}",
+            testRunner   : "androidx.test:runner:${testrunner_version}",
+            testRules    : "androidx.test:rules:${testrules_version}",
             espressoCore : "androidx.test.espresso:espresso-core:${espresso_core_version}",
     ]
 
     androidDependenciesFramework = [
-            dagger: "com.google.dagger:dagger:${daggerVersion}",
+            dagger          : "com.google.dagger:dagger:${daggerVersion}",
             servicesLocation: "com.google.android.gms:play-services-location:${servicesLocationVersion}"
 
     ]
@@ -140,13 +142,13 @@ ext {
 
     navigationDepdendencies = [
             navigationFragment: "androidx.navigation:navigation-fragment-ktx:${navigationFragmentVersion}",
-            navigationUi      : "androidx.navigation:navigation-ui-ktx:${navigationUiVersion}",
+            navigationUi      : "androidx.navigation:navigation-ui-ktx:${navigationUiVersion}"
     ]
 
     roomDependencies = [
-            navigationRoomRuntime: 'androidx.room:room-runtime:2.2.3',
-            room                 : "androidx.room:room-ktx:2.2.3",
-            rxandroid: "io.reactivex.rxjava3:rxandroid:3.0.0"
+            navigationRoomRuntime: "androidx.room:room-runtime:${roomVersion}",
+            room                 : "androidx.room:room-ktx:${roomVersion}",
+            rxRoom               : "androidx.room:room-rxjava2:${roomVersion}"
     ]
 
     glideDependencies = [
@@ -158,6 +160,6 @@ ext {
     ]
 
     dexterDependencies = [
-            dexter : "com.karumi:dexter:${dexterVersion}"
+            dexter: "com.karumi:dexter:${dexterVersion}"
     ]
 }
