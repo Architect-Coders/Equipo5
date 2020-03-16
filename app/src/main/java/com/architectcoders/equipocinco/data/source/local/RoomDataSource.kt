@@ -7,9 +7,9 @@ import com.architectcoders.generic.framework.extension.enclosingPercentage
 import com.architectcoders.source.local.LocalDataSource
 import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
 import kotlin.coroutines.resume
-import kotlin.coroutines.suspendCoroutine
 
 
 class RoomDataSource(private val movieDao: MovieDao) :
@@ -40,13 +40,15 @@ class RoomDataSource(private val movieDao: MovieDao) :
 
     override suspend fun getFavoriteMovies(): List<Movie> =
         withContext(Dispatchers.IO) {
-            suspendCoroutine<List<Movie>> { continuation ->
+            suspendCancellableCoroutine<List<Movie>> { continuation ->
                 run {
                     movieDao.getFavoriteMovies()
                         .observeOn(Schedulers.io())
                         .subscribe { t ->
                             val lists = t.map { it.toDomainMovie() };
-                            continuation.resume(lists)
+                            if(continuation.isActive) {
+                                continuation.resume(lists)
+                            }
                         }
                 }
             }
