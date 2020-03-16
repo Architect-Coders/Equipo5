@@ -79,6 +79,12 @@ abstract class MoviesFragment : Fragment() {
     abstract fun onRequestMovies()
 
     private fun updateData(movies: List<Movie>) {
+        if(movies.isEmpty()){
+            tv.visibility = View.VISIBLE
+            pb.hide()
+        } else {
+            tv.visibility = View.GONE
+        }
         initAdapter(movies)
     }
 
