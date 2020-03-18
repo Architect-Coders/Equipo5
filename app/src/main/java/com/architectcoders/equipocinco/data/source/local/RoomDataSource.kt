@@ -44,8 +44,8 @@ class RoomDataSource(private val movieDao: MovieDao) :
                 run {
                     movieDao.getFavoriteMovies()
                         .observeOn(Schedulers.io())
-                        .subscribe { t ->
-                            val lists = t.map { it.toDomainMovie() };
+                        .subscribe { favoriteMovies ->
+                            val lists = favoriteMovies.map { it.toDomainMovie() };
                             if(continuation.isActive) {
                                 continuation.resume(lists)
                             }

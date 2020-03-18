@@ -22,7 +22,9 @@ import com.architectcoders.equipocinco.framework.SearchManager
 import com.architectcoders.equipocinco.ui.adapter.MovieAdapter
 import com.architectcoders.equipocinco.ui.fragment.detail.DetailMovieFragment
 import com.architectcoders.generic.framework.extension.isFilled
+import com.architectcoders.generic.framework.extension.view.gone
 import com.architectcoders.generic.framework.extension.view.setVisibleOrGone
+import com.architectcoders.generic.framework.extension.view.visible
 import com.architectcoders.presentation.viewmodels.MovieViewModel
 import kotlinx.android.synthetic.main.fragment_movies.*
 import kotlinx.android.synthetic.main.progress_bar.*
@@ -80,10 +82,10 @@ abstract class MoviesFragment : Fragment() {
 
     private fun updateData(movies: List<Movie>) {
         if(movies.isEmpty()){
-            tv.visibility = View.VISIBLE
+            tv.visible()
             pb.hide()
         } else {
-            tv.visibility = View.GONE
+            tv.gone()
         }
         initAdapter(movies)
     }
