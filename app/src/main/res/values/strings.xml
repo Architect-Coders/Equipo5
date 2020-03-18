@@ -6,4 +6,6 @@
     <string name="movies_bottom_navigation_toprated">TOP RATED</string>
     <string name="movies_bottom_navigation_favourites">FAVOURITE</string>
 
+    <string name="no_content">Currently, there isn\'t content to show</string>
+
 </resources>

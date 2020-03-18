@@ -1,12 +1,15 @@
 package com.architectcoders.equipocinco.data.source.local
 
 import com.architectcoders.domain.model.Movie
-import com.architectcoders.generic.framework.extension.enclosingPercentage
 import com.architectcoders.equipocinco.data.mappers.mapDomainMovieToDb
 import com.architectcoders.equipocinco.data.mappers.toDomainMovie
+import com.architectcoders.generic.framework.extension.enclosingPercentage
 import com.architectcoders.source.local.LocalDataSource
+import io.reactivex.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
+import kotlin.coroutines.resume
 
 
 class RoomDataSource(private val movieDao: MovieDao) :
@@ -37,8 +40,18 @@ class RoomDataSource(private val movieDao: MovieDao) :
 
     override suspend fun getFavoriteMovies(): List<Movie> =
         withContext(Dispatchers.IO) {
-            movieDao.getFavoriteMovies()
-                .map { movieDb -> movieDb.toDomainMovie() }
+            suspendCancellableCoroutine<List<Movie>> { continuation ->
+                run {
+                    movieDao.getFavoriteMovies()
+                        .observeOn(Schedulers.io())
+                        .subscribe { favoriteMovies ->
+                            val lists = favoriteMovies.map { it.toDomainMovie() };
+                            if(continuation.isActive) {
+                                continuation.resume(lists)
+                            }
+                        }
+                }
+            }
         }
 
     override suspend fun saveMovies(movies: List<Movie>) = withContext(Dispatchers.IO) {

@@ -5,6 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/text"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/no_content"
+        android:visibility="gone"/>
+
     <include
         android:id="@+id/clSearch"
         layout="@layout/search" />
