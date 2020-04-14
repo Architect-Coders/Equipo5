@@ -1,6 +1,7 @@
 package com.architectcoders.presentation.viewmodels
 
 import android.util.Log
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.architectcoders.domain.model.Movie
@@ -65,12 +66,15 @@ class MovieViewModel(
         }
     }
 
-    private fun handleMoviesResponse(movies: List<Movie>) {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    fun handleMoviesResponse(movies: List<Movie>) {
         _model.value = UiModel.Content(movies)
     }
 
-    private fun handleErrorResponse(throwable: Throwable) {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    fun handleErrorResponse(throwable: Throwable) {
         Log.d("Throwable", "asasd")
         //TODO
     }
+
 }
